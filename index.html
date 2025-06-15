@@ -101,6 +101,70 @@
       color: #444;
       margin-top: 3em;
     }
+    /* Nieuwe stijlen voor rechtszaak knop */
+    #startKlachtBtn {
+      background-color: #d40000;
+      color: white;
+      font-weight: 900;
+      font-size: 1.5rem;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(212, 0, 0, 0.4);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+      margin: 2em auto;
+      display: block;
+    }
+    #startKlachtBtn:hover {
+      background-color: #a30000;
+      transform: scale(1.05);
+    }
+    #startKlachtBtn:active {
+      transform: scale(0.95);
+    }
+    #rechtszaakForm {
+      max-width: 400px;
+      margin: 1em auto 3em auto;
+      padding: 20px;
+      border: 2px solid #d40000;
+      border-radius: 10px;
+      background: #fff0f0;
+    }
+    #rechtszaakForm label {
+      display: block;
+      margin-top: 1em;
+      font-weight: 700;
+    }
+    #rechtszaakForm input[type="text"],
+    #rechtszaakForm textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.5em;
+      border: 1px solid #d40000;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    #rechtszaakForm button {
+      background-color: #d40000;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 30px;
+      font-weight: 900;
+      font-size: 1.2rem;
+      margin-top: 1.5em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      display: block;
+      width: 100%;
+    }
+    #rechtszaakForm button:hover {
+      background-color: #a30000;
+    }
   </style>
 </head>
 <body>
@@ -148,7 +212,7 @@
   </div>
 
   <hr class="separator" />
-<h2>📖 Hoe het begon</h2>
+  <h2>📖 Hoe het begon</h2>
   <div class="history">
     <p>
       Akomorad is allemaal begonnen bij garage DOA toen Mustafë Fetahaj zijn garage had gekocht moest iedereen helpen om het te organiseren en Egzon Kiel zij tegen Altin Fransman "ga een Akomorad halen" maar Fransman wist niet was dat was en zo was het allamaal begonnen.
@@ -158,11 +222,9 @@
     </p>
   </div>
 
-
   <h2>🔱 Reglement van Akomorada</h2>
   <div class="reglement">
     <strong>“Eén familie. Eén woord. Eén hartslag.”</strong>
-
 
     🔒 1. Loyaliteit is wet
     1. Je mag ons nooit verlaten voor iets of iemand.
@@ -192,50 +254,73 @@
     17. Belangrijke beslissingen worden samen genomen.
     18. Ieders mening mag gehoord worden.
 
-    🔥 6. Energie en vibe
-    19. We houden het echt – fake gedrag is verboden.
-    20. Negativiteit zonder reden wordt aangesproken.
-    21. Je bent verantwoordelijk voor de sfeer die je brengt.
+    🔥 6. Fun en plezier
+    19. Humor is onze kracht, lachen mag altijd.
+    20. We creëren herinneringen die niemand vergeet.
 
-    🔗 7. Samen sterk
-    22. Wat de groep aangaat, gaat jou aan.
-    23. Als één van ons vecht, vechten we allemaal.
-    24. Je staat niet aan de zijkant. Je bent een deel van het geheel.
-    25. We bouwen samen. We vallen samen. We winnen samen.
-
-    💎 8. Trots en identiteit
-    26. Je draagt de naam "Akomorada" met trots.
-    27. Praat nooit slecht over de groep tegen buitenstaanders.
-    28. Laat altijd zien wie we zijn – met daden, niet alleen woorden.
-    29. Akomorada is familie.
-
-    ⚔️ 9. Tucht & discipline
-    30. Wie zich niet aan de regels houdt, krijgt een waarschuwing.
-    31. Herhaalde overtreding = recht.
-    32. Op disrespect volgt direct overleg of sanctie.
-    33. Niemand is te groot om gecorrigeerd te worden.
-
-    🕊️ 10. Voor altijd
-    34. Eens Akomorad, altijd Akomorad.
-    35. Zelfs als je weggaat, blijf je verbonden.
-    36. Loyaliteit leeft verder, zelfs in stilte.
-    37. Wij zijn geen groep. Wij zijn bloed.
-
-    ⛔ 11. Kappen
-    38. Laat je ons hangen of doe je irritant? = Rechtzaak.
-
-       12. Rechtzaken
-    39. Broers leiden nooit een rechtzaak in verband met eerlijkheid en vertrouwen. 
+    🚨 7. Sancties bij overtredingen
+    21. Overtredingen worden serieus genomen.
+    22. Mogelijke sancties: waarschuwing, straf of rechtzaak.
   </div>
-                                       <video width="640" height="360" controls>
-                                      <source src="mijnvideo.mp4" type="video/mp4">
-                                      Je browser ondersteunt deze video niet.
-                                      
-                                      </video>
+
+  <!-- Knop rechtszaak in het midden -->
+  <button id="startKlachtBtn" onclick="toonForm()">Dien klacht in voor een rechtzaak</button>
+
+  <!-- Formulier rechtszaak, verborgen tot actief -->
+  <form id="rechtszaakForm" style="display:none">
+    <label for="klachtNaam">Jouw naam:</label>
+    <input type="text" id="klachtNaam" name="klachtNaam" required />
+
+    <label for="klachtReden">Reden klacht:</label>
+    <textarea id="klachtReden" name="klachtReden" rows="4" required></textarea>
+
+    <button type="submit">Verzend klacht</button>
+  </form>
 
   <div class="footer">
-    Akomorad-Vrellë&Ferizaj
+    2025 Akomorada. Alle rechten voorbehouden.
   </div>
+
+  <!-- EmailJS SDK -->
+ <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<script>
+  emailjs.init("6Y2sXP7XS4c-9DCLg"); // Jouw public key
+
+  function toonForm() {
+    const form = document.getElementById('rechtszaakForm');
+    form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+    if (form.style.display === 'block') {
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  document.getElementById('startKlachtBtn').addEventListener('click', toonForm);
+
+  document.getElementById('rechtszaakForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const naam = document.getElementById('klachtNaam').value.trim();
+    const reden = document.getElementById('klachtReden').value.trim();
+
+    if (!naam || !reden) {
+      alert('Vul alstublieft alle velden in.');
+      return;
+    }
+
+    emailjs.send('service_s2ayku9', 'template_cnndnrp', { naam, reden })
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('Klacht succesvol verzonden! Dank je wel.');
+        document.getElementById('rechtszaakForm').reset();
+        document.getElementById('rechtszaakForm').style.display = 'none';
+      })
+      .catch(function(error) {
+        console.error('FAILED...', error);
+        alert('Er is een fout opgetreden bij het verzenden van je klacht. Probeer het later opnieuw.');
+      });
+  });
+</script>
+
 
 </body>
 </html>
