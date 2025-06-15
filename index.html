@@ -101,8 +101,8 @@
       color: #444;
       margin-top: 3em;
     }
-    /* Nieuwe stijlen voor rechtszaak knop */
-    #startKlachtBtn {
+    /* Nieuwe stijlen voor Google Form knop */
+    #openGoogleFormBtn {
       background-color: #d40000;
       color: white;
       font-weight: 900;
@@ -117,53 +117,12 @@
       margin: 2em auto;
       display: block;
     }
-    #startKlachtBtn:hover {
+    #openGoogleFormBtn:hover {
       background-color: #a30000;
       transform: scale(1.05);
     }
-    #startKlachtBtn:active {
+    #openGoogleFormBtn:active {
       transform: scale(0.95);
-    }
-    #rechtszaakForm {
-      max-width: 400px;
-      margin: 1em auto 3em auto;
-      padding: 20px;
-      border: 2px solid #d40000;
-      border-radius: 10px;
-      background: #fff0f0;
-    }
-    #rechtszaakForm label {
-      display: block;
-      margin-top: 1em;
-      font-weight: 700;
-    }
-    #rechtszaakForm input[type="text"],
-    #rechtszaakForm textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 0.5em;
-      border: 1px solid #d40000;
-      border-radius: 5px;
-      font-size: 1rem;
-      font-family: inherit;
-    }
-    #rechtszaakForm button {
-      background-color: #d40000;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 12px 30px;
-      font-weight: 900;
-      font-size: 1.2rem;
-      margin-top: 1.5em;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      user-select: none;
-      display: block;
-      width: 100%;
-    }
-    #rechtszaakForm button:hover {
-      background-color: #a30000;
     }
   </style>
 </head>
@@ -261,66 +220,47 @@
     🚨 7. Sancties bij overtredingen
     21. Overtredingen worden serieus genomen.
     22. Mogelijke sancties: waarschuwing, straf of rechtzaak.
+    23. Als één van ons vecht, vechten we allemaal.
+    24. Je staat niet aan de zijkant. Je bent een deel van het geheel.
+    25. We bouwen samen. We vallen samen. We winnen samen.
+
+    💎 8. Trots en identiteit
+    26. Je draagt de naam "Akomorada" met trots.
+    27. Praat nooit slecht over de groep tegen buitenstaanders.
+    28. Laat altijd zien wie we zijn – met daden, niet alleen woorden.
+    29. Akomorada is familie.
+
+    ⚔️ 9. Tucht & discipline
+    30. Wie zich niet aan de regels houdt, krijgt een waarschuwing.
+    31. Herhaalde overtreding = recht.
+    32. Op disrespect volgt direct overleg of sanctie.
+    33. Niemand is te groot om gecorrigeerd te worden.
+
+    🕊️ 10. Voor altijd
+    34. Eens Akomorad, altijd Akomorad.
+    35. Zelfs als je weggaat, blijf je verbonden.
+    36. Loyaliteit leeft verder, zelfs in stilte.
+    37. Wij zijn geen groep. Wij zijn bloed.
+
+    ⛔ 11. Kappen
+    38. Laat je ons hangen of doe je irritant? = Rechtzaak.
+
+       12. Rechtzaken
+    39. Broers leiden nooit een rechtzaak in verband met 
   </div>
 
-  <!-- Knop rechtszaak in het midden -->
-  <button id="startKlachtBtn" onclick="toonForm()">Dien klacht in voor een rechtzaak</button>
-
-  <!-- Formulier rechtszaak, verborgen tot actief -->
-  <form id="rechtszaakForm" style="display:none">
-    <label for="klachtNaam">Jouw naam:</label>
-    <input type="text" id="klachtNaam" name="klachtNaam" required />
-
-    <label for="klachtReden">Reden klacht:</label>
-    <textarea id="klachtReden" name="klachtReden" rows="4" required></textarea>
-
-    <button type="submit">Verzend klacht</button>
-  </form>
+  <!-- Knop om Google Form te openen -->
+  <button id="openGoogleFormBtn">Dien klacht in voor een rechtzaak</button>
 
   <div class="footer">
     2025 Akomorada. Alle rechten voorbehouden.
   </div>
 
-  <!-- EmailJS SDK -->
- <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
 <script>
-  emailjs.init("6Y2sXP7XS4c-9DCLg"); // Jouw public key
-
-  function toonForm() {
-    const form = document.getElementById('rechtszaakForm');
-    form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
-    if (form.style.display === 'block') {
-      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  document.getElementById('startKlachtBtn').addEventListener('click', toonForm);
-
-  document.getElementById('rechtszaakForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const naam = document.getElementById('klachtNaam').value.trim();
-    const reden = document.getElementById('klachtReden').value.trim();
-
-    if (!naam || !reden) {
-      alert('Vul alstublieft alle velden in.');
-      return;
-    }
-
-    emailjs.send('service_s2ayku9', 'template_cnndnrp', { naam, reden })
-      .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
-        alert('Klacht succesvol verzonden! Dank je wel.');
-        document.getElementById('rechtszaakForm').reset();
-        document.getElementById('rechtszaakForm').style.display = 'none';
-      })
-      .catch(function(error) {
-        console.error('FAILED...', error);
-        alert('Er is een fout opgetreden bij het verzenden van je klacht. Probeer het later opnieuw.');
-      });
+  document.getElementById('openGoogleFormBtn').addEventListener('click', () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSc21Ml4j7DvYmP-mxpqqSG2GBKMJRNvADiATtHzoIy6aDLTbw/viewform', '_blank');
   });
 </script>
-
 
 </body>
 </html>
