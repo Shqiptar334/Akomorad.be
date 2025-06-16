@@ -101,8 +101,13 @@
       color: #444;
       margin-top: 3em;
     }
-    /* Nieuwe stijlen voor Google Form knop */
-    #openGoogleFormBtn {
+
+    /* Knoppen naast elkaar centreren */
+    .button-container {
+      text-align: center;
+      margin: 2em 0;
+    }
+    .button-container button {
       background-color: #d40000;
       color: white;
       font-weight: 900;
@@ -114,14 +119,14 @@
       box-shadow: 0 4px 8px rgba(212, 0, 0, 0.4);
       transition: background-color 0.3s ease, transform 0.2s ease;
       user-select: none;
-      margin: 2em auto;
-      display: block;
+      margin: 0 15px;
+      display: inline-block;
     }
-    #openGoogleFormBtn:hover {
+    .button-container button:hover {
       background-color: #a30000;
       transform: scale(1.05);
     }
-    #openGoogleFormBtn:active {
+    .button-container button:active {
       transform: scale(0.95);
     }
   </style>
@@ -134,7 +139,7 @@
 
   <div class="cards-container">
     <div class="card">
-      <h3>Ardit Prioriteitencoördinator (Mieke) <span class="badge">Duda Stoplicht</span></h3>
+      <h3>Ardit Mieke's Prioriteitencoördinator <span class="badge">Duda Stoplicht</span></h3>
       <p class="description">Bekend als topchauffeur, laat soms de Akomorada hangen voor zijn mieke. Staat ook bekend voor Sofie nipli nipli of dupli nipli kabels. En staat ook nog is bekend voor de laatste minuut af te zeggen omdat hij al plannen heeft.</p>
       <p class="contact">📧 dudastoplicht@Akomorad.be<br>📞 +32 490 12 34 56</p>
     </div>
@@ -249,23 +254,28 @@
     39. Broers leiden nooit een rechtzaak in verband met 
   </div>
   <video width="640" height="360" controls>
-                                      <source src="mijnvideo.mp4" type="video/mp4">
-                                      Je browser ondersteunt deze video niet.
-                                      
-                                      </video>
+    <source src="mijnvideo.mp4" type="video/mp4" />
+    Je browser ondersteunt deze video niet.
+  </video>
 
-  <!-- Knop om Google Form te openen -->
-  <button id="openGoogleFormBtn">Dien klacht in voor een rechtzaak</button>
+  <!-- Knoppen naast elkaar -->
+  <div class="button-container">
+    <button id="openGoogleFormBtn">Dien klacht in voor een rechtzaak</button>
+    <button id="newRuleRequestBtn">Nieuwe regel aanvragen</button>
+  </div>
 
   <div class="footer">
     2025 Akomorada. Alle rechten voorbehouden.
   </div>
 
-<script>
-  document.getElementById('openGoogleFormBtn').addEventListener('click', () => {
-    window.open('https://docs.google.com/forms/d/e/1FAIpQLSc21Ml4j7DvYmP-mxpqqSG2GBKMJRNvADiATtHzoIy6aDLTbw/viewform', '_blank');
-  });
-</script>
+  <script>
+    document.getElementById('openGoogleFormBtn').addEventListener('click', () => {
+      window.open('https://docs.google.com/forms/d/e/1FAIpQLSc21Ml4j7DvYmP-mxpqqSG2GBKMJRNvADiATtHzoIy6aDLTbw/viewform', '_blank');
+    });
+    document.getElementById('newRuleRequestBtn').addEventListener('click', () => {
+      window.open('https://docs.google.com/forms/d/e/1FAIpQLSdU4wFQby2x1PvKmpJwnaxGLWLCry4MsZX4gtUNAzeuwzke-Q/viewform?embedded=true', '_blank');
+    });
+  </script>
 
 </body>
 </html>
