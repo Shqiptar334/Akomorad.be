@@ -9,23 +9,15 @@
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #ffffff;
-      color: #000000;
-      padding: 20px;
+      color: #000;
+      padding: 20px 10px;
       line-height: 1.5;
     }
     h1, h2 {
       text-align: center;
       font-weight: 900;
       color: #000;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-top: 0.5em;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-top: 2em;
-      margin-bottom: 1em;
+      margin: 0.5em 0;
     }
     .subtitle {
       font-style: italic;
@@ -36,22 +28,24 @@
     }
     .logo {
       display: block;
-      margin: 0 auto 20px auto;
+      margin: 0 auto 20px;
       max-width: 300px;
       height: auto;
     }
-    .cards-container {
+    .cards-container, .idcards-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      max-width: 1200px;
       margin: 0 auto;
+      padding-bottom: 2em;
+      max-width: 1200px;
     }
-    .card {
+    .card, .idcard {
       background: #f8f8f8;
       border: 2px solid #000;
       border-radius: 10px;
       padding: 20px;
+      transition: border-color 0.3s;
     }
     .card:hover {
       border-color: #d40000;
@@ -73,6 +67,7 @@
     .description {
       color: #111;
       font-size: 0.95rem;
+      margin: 10px 0;
     }
     .contact {
       font-size: 0.85rem;
@@ -81,7 +76,7 @@
     hr.separator {
       border: none;
       border-top: 2px solid #000;
-      margin: 3em auto 2em auto;
+      margin: 3em auto 2em;
       max-width: 700px;
     }
     .reglement {
@@ -90,19 +85,16 @@
       padding: 20px;
       border-radius: 10px;
       max-width: 700px;
-      margin: 0 auto;
+      margin: 0 auto 3em;
       font-size: 0.95rem;
-      color: #000;
       white-space: pre-line;
     }
-    .footer {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #444;
-      margin-top: 3em;
+    video {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      margin: 2em auto;
     }
-
-    /* Knoppen naast elkaar centreren */
     .button-container {
       text-align: center;
       margin: 2em 0;
@@ -117,10 +109,8 @@
       border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 4px 8px rgba(212, 0, 0, 0.4);
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      user-select: none;
-      margin: 0 15px;
-      display: inline-block;
+      transition: background-color 0.3s, transform 0.2s;
+      margin: 0 10px;
     }
     .button-container button:hover {
       background-color: #a30000;
@@ -128,6 +118,49 @@
     }
     .button-container button:active {
       transform: scale(0.95);
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #444;
+      margin-top: 3em;
+    }
+    @media screen and (max-width: 600px) {
+      .card, .idcard {
+        width: 95%;
+        max-width: none;
+      }
+    }
+    .idcard {
+      background: #fff;
+      border: 2px solid #d40000;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      overflow: hidden;
+      padding-bottom: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .idcard-header {
+      background: #d40000;
+      color: white;
+      padding: 10px 15px;
+      text-align: center;
+      font-weight: bold;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+    .idcard-body {
+      padding: 15px;
+    }
+    .idcard-body img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 1em;
+    }
+    .idcard-body p {
+      margin: 5px 0;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -137,229 +170,161 @@
   <h1>AKOMORAD</h1>
   <p class="subtitle">Eén familie. Eén woord. Eén hartslag.</p>
 
+  <!-- Persoonlijke kaarten -->
   <div class="cards-container">
     <div class="card">
-      <h3>Ardit Prioriteitencoördinator (Mieke) <span class="badge">Duda Stoplicht</span></h3>
+      <h3>Ardit Prioriteitencoördinator <span class="badge">Duda Stoplicht</span></h3>
       <p class="description">Bekend als topchauffeur, laat soms de Akomorada hangen voor zijn mieke. Staat ook bekend voor Sofie nipli nipli of dupli nipli kabels. En staat ook nog is bekend voor de laatste minuut af te zeggen omdat hij al plannen heeft.</p>
-      <p class="contact">📧 dudastoplicht@Akomorad.be<br>📞 +32 490 12 34 56</p>
+      <p class="contact">📧 dudastoplicht@Akomorad.be<br>📞 +32 490 12 34 56</p>
     </div>
     <div class="card">
       <h3>Altin Slachtoffer <span class="badge">Fransman</span></h3>
       <p class="description">Zegt vaak 'gedraag je' tegen anderen en praat stoer online maar blijft stil in het echt. Staat bekend voor zijn strakke haren die met gel worden gelikt.</p>
-      <p class="contact">📧 fransman@Akomorad.be<br>📞 +32 491 65 43 21</p>
+      <p class="contact">📧 fransman@Akomorad.be<br>📞 +32 491 65 43 21</p>
     </div>
     <div class="card">
       <h3>Eliot Directeur <span class="badge">Roadman Loti</span></h3>
       <p class="description">Directeur van Akomorada. Bekend voor zijn unieke video's, organisatie skills én z'n filosofische uitspraken die niemand begrijpt. De organisator van de groep en de hoofd rechter.</p>
-      <p class="contact">📧 roadman@Akomorad.be<br>📞 +32 492 78 56 34</p>
+      <p class="contact">📧 roadman@Akomorad.be<br>📞 +32 492 78 56 34</p>
     </div>
     <div class="card">
       <h3>Ermal Ballieman <span class="badge">Terlo</span></h3>
       <p class="description">Actief op het Terloplein, maakt de beste snaps voor Akomorada. Staat ook bekend om zijn legendarische uitspraken.</p>
-      <p class="contact">📧 terlo@Akomorad.be<br>📞 +32 493 87 12 90</p>
+      <p class="contact">📧 terlo@Akomorad.be<br>📞 +32 493 87 12 90</p>
     </div>
     <div class="card">
       <h3>Egzon Uitvinder <span class="badge">Xoni Kiel</span></h3>
       <p class="description">Uitvinder van het woord Akomorad. Fixer van wijven en official boxer van de groep. Heeft ook altijd de grootste energie.</p>
-      <p class="contact">📧 kiel@Akomorad.be<br>📞 +32 494 45 67 89</p>
+      <p class="contact">📧 kiel@Akomorad.be<br>📞 +32 494 45 67 89</p>
     </div>
     <div class="card">
       <h3>Agon Teamleider <span class="badge">Zemelbok</span></h3>
       <p class="description">Oudste van de groep met altijd de strakste outfits. "Wordt herkent door Heb respect Egzon!!!". En hij kan al weten wanneer je kaal wordt door alleen je hoofd aan te raken.</p>
-      <p class="contact">📧 zemelbok@Akomorad.be<br>📞 +32 495 34 98 76</p>
+      <p class="contact">📧 zemelbok@Akomorad.be<br>📞 +32 495 34 98 76</p>
     </div>
     <div class="card">
-      <h3>Erin Coach<span class="badge">Plofkraak</span></h3>
+      <h3>Erin Coach <span class="badge">Plofkraak</span></h3>
       <p class="description">Advocaat, rechter en een van de grappigste leden van Akomorada. Nieuwste lid maar gelijk ook een essentieel brein achter vele plannen.</p>
-      <p class="contact">📧 plofkraak@Akomorad.be<br>📞 +32 496 21 43 65</p>
+      <p class="contact">📧 plofkraak@Akomorad.be<br>📞 +32 496 21 43 65</p>
     </div>
   </div>
 
   <hr class="separator" />
+
   <h2>📖 Hoe het begon</h2>
-  <div class="history">
-    <p>
-      Akomorad is allemaal begonnen bij garage DOA toen Mustafë Fetahaj zijn garage had gekocht moest iedereen helpen om het te organiseren en Egzon Kiel zij tegen Altin Fransman "ga een Akomorad halen" maar Fransman wist niet was dat was en zo was het allamaal begonnen.
-    </p>
-    <p>
-    Paar weken later: Akomorad was nog niet zo poplulair bij de familie omdat bijna niemand da gebruikte maar op een nacht rond 2u in de nacht had Roadman Loti Fransman wakker gemaakt en hij zij tegen Fransman "Altin babi roept jouw om Akomorada te gaan halen" en toen werd het heel populair in de familie maar echt heel populair
-    </p>
+  <div class="reglement" style="border-color:#000;">
+    <p>Akomorad is allemaal begonnen bij garage DOA toen Mustafë Fetahaj zijn garage had gekocht moest iedereen helpen om het te organiseren en Egzon Kiel zei tegen Altin Fransman "ga een Akomorad halen" maar Fransman wist niet wat dat was en zo was het allemaal begonnen.</p>
+    <p>Paar weken later: Akomorad was nog niet zo populair ... en toen werd het heel populair in de familie.</p>
   </div>
 
   <h2>🔱 Reglement van Akomorada</h2>
   <div class="reglement">
-    <strong>“Eén familie. Eén woord. Eén hartslag.”</strong>
-
-    🔒 1. Loyaliteit is wet
-    1. Je mag ons nooit verlaten voor iets of iemand.
-    2. Akomorada komt altijd op de eerste plaats – boven relaties, vrienden.
-    3. We laten nooit iemand alleen, wat er ook gebeurt.
-    4. Alleen Agon Zemelbok, Egzon Kiel en heel soms Ardit Duda mogen de snaps laten zien.
-
-    🤝 2. Aanwezigheid is verplicht
-    5. Als Akomorada samenkomt, ben je er. Geen excuses.
-    6. Te laat komen zonder reden = disrespect.
-    7. Onverwacht afwezig? = rechtzaak
-
-    🧱 3. Eerlijkheid boven alles
-    8. Liegen binnen de groep is een breuk in vertrouwen.
-    9. Alles wat je zegt, meen je. Geen loze woorden.
-    10. Fouten mag je maken, maar je moet ze erkennen.
-    11. Wat besproken wordt binnen Akomorada, blijft intern.
-
-    🛡️ 4. Bescherming en respect
-    12. Niemand buiten de groep komt tussen ons in.
-    13. We staan op voor elkaar, ongeacht de situatie.
-    14. Roddels, haat of jaloezie worden niet getolereerd.
-    15. Respecteer gevoelens en grenzen van ieder lid.
-
-    ⚖️ 5. Gelijkheid en stemrecht
-    16. Niemand is boven de groep – iedereen telt mee.
-    17. Belangrijke beslissingen worden samen genomen.
-    18. Ieders mening mag gehoord worden.
-
-    🔥 6. Fun en plezier
-    19. Humor is onze kracht, lachen mag altijd.
-    20. We creëren herinneringen die niemand vergeet.
-
-    🚨 7. Sancties bij overtredingen
-    21. Overtredingen worden serieus genomen.
-    22. Mogelijke sancties: waarschuwing, straf of rechtzaak.
-    23. Als één van ons vecht, vechten we allemaal.
-    24. Je staat niet aan de zijkant. Je bent een deel van het geheel.
-    25. We bouwen samen. We vallen samen. We winnen samen.
-
-    💎 8. Trots en identiteit
-    26. Je draagt de naam "Akomorada" met trots.
-    27. Praat nooit slecht over de groep tegen buitenstaanders.
-    28. Laat altijd zien wie we zijn – met daden, niet alleen woorden.
-    29. Akomorada is familie.
-
-    ⚔️ 9. Tucht & discipline
-    30. Wie zich niet aan de regels houdt, krijgt een waarschuwing.
-    31. Herhaalde overtreding = recht.
-    32. Op disrespect volgt direct overleg of sanctie.
-    33. Niemand is te groot om gecorrigeerd te worden.
-
-    🕊️ 10. Voor altijd
-    34. Eens Akomorad, altijd Akomorad.
-    35. Zelfs als je weggaat, blijf je verbonden.
-    36. Loyaliteit leeft verder, zelfs in stilte.
-    37. Wij zijn geen groep. Wij zijn bloed.
-
-    ⛔ 11. Kappen
-    38. Laat je ons hangen of doe je irritant? = Rechtzaak.
-
-       12. Rechtzaken
-    39. Broers leiden nooit een rechtzaak in verband met 
+<strong>“Eén familie. Eén woord. Eén hartslag.”</strong>
+🔒 1. Loyaliteit is wet  
+1. Je mag ons nooit verlaten voor iets of iemand.  
+...  
+39. Broers leiden nooit een rechtzaak in verband met
   </div>
-  <video width="640" height="360" controls>
-    <source src="mijnvideo.mp4" type="video/mp4" />
+
+  <video controls>
+    <source src="mijnvideo.mp4" type="video/mp4">
     Je browser ondersteunt deze video niet.
   </video>
 
-  <!-- Knoppen naast elkaar -->
   <div class="button-container">
     <button id="openGoogleFormBtn">Dien klacht in voor een rechtzaak</button>
     <button id="newRuleRequestBtn">Nieuwe regel aanvragen</button>
   </div>
-
-  <div class="footer">
-  <script>
+    <script>
     document.getElementById('openGoogleFormBtn').addEventListener('click', () => {
-      window.open('https://docs.google.com/forms/d/e/1FAIpQLSc21Ml4j7DvYmP-mxpqqSG2GBKMJRNvADiATtHzoIy6aDLTbw/viewform', '_blank');
+      window.open('https://docs.google.com/forms/d/e/…/viewform', '_blank');
     });
     document.getElementById('newRuleRequestBtn').addEventListener('click', () => {
-      window.open('https://docs.google.com/forms/d/e/1FAIpQLSdU4wFQby2x1PvKmpJwnaxGLWLCry4MsZX4gtUNAzeuwzke-Q/viewform?embedded=true', '_blank');
+      window.open('https://docs.google.com/forms/d/e/…/viewform', '_blank');
     });
   </script>
 
-
-
- <h2 style="text-align: center; margin-top: 4em; font-size: 2.5rem; color: #000;">🪪 Akomorad ID-Kaarten Voorbeelden:</h2>
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 960px; margin: 3em auto;">
-
-  <!-- Rij 1, kolom 1 -->
-  <div style="background: #fff; border: 2px solid #d40000; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); overflow: hidden; font-family: Arial, sans-serif; padding-bottom: 20px;">
-    <div style="background: #d40000; color: white; padding: 10px 15px; text-align: center; font-weight: bold; white-space: normal; word-wrap: break-word;">AKOMORADA IDENTITEITSKAART</div>
-    <div style="padding: 15px;">
-      <img src="foto8.JPG" alt="Egzon Xoni Kiel" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;">
-      <p><strong>👤 Naam:</strong> Egzon Xoni Kiel</p>
-      <p><strong>🎖️ Rol:</strong> Uitvinder</p>
-      <p><strong>📍 Plaats:</strong> Vrellë</p>
-      <p><strong>📅 Geboortedatum:</strong> 2005</p>
-      <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
+  <h2 style="text-align:center; margin-top:4em; font-size:2.5rem;">🪪 Akomorad ID‑Kaarten Voorbeelden</h2>
+  <div class="idcards-container">
+    <!-- Egzon -->
+    <div class="idcard">
+      <div class="idcard-header">AKOMORADA IDENTITEITSKAART</div>
+      <div class="idcard-body">
+        <img src="foto8.JPG" alt="Egzon Xoni Kiel">
+        <p><strong>👤 Naam:</strong> Egzon Xoni Kiel</p>
+        <p><strong>🎖️ Rol:</strong> Uitvinder</p>
+        <p><strong>📍 Plaats:</strong> Vrellë</p>
+        <p><strong>📅 Geboortedatum:</strong> 2005</p>
+        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
+      </div>
+    </div>
+    <!-- Roadman -->
+    <div class="idcard">
+      <div class="idcard-header">AKOMORADA IDENTITEITSKAART</div>
+      <div class="idcard-body">
+        <img src="foto2.JPG" alt="Roadman Loti">
+        <p><strong>👤 Naam:</strong> Roadman Loti</p>
+        <p><strong>🎖️ Rol:</strong> Directeur</p>
+        <p><strong>📍 Plaats:</strong> Vrellë</p>
+        <p><strong>📅 Geboortedatum:</strong> 2011</p>
+        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
+      </div>
+    </div>
+    <!-- Ardit -->
+    <div class="idcard">
+      <div class="idcard-header">AKOMORADA IDENTITEITSKAART</div>
+      <div class="idcard-body">
+        <img src="foto3.JPG" alt="Ardit Duda Stoplicht">
+        <p><strong>👤 Naam:</strong> Ardit Duda Stoplicht</p>
+        <p><strong>🎖️ Rol:</strong> Mieke's Prioriteitencoördinator</p>
+        <p><strong>📍 Plaats:</strong> Vrellë</p>
+        <p><strong>📅 Geboortedatum:</strong> 2006</p>
+        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
+      </div>
+    </div>
+    <!-- Altin -->
+    <div class="idcard">
+      <div class="idcard-header">AKOMORADA IDENTITEITSKAART</div>
+      <div class="idcard-body">
+        <img src="foto6.PNG" alt="Altin Fransman">
+        <p><strong>👤 Naam:</strong> Altin Fransman</p>
+        <p><strong>🎖️ Rol:</strong> Slachtoffer</p>
+        <p><strong>📍 Plaats:</strong> Vrellë</p>
+        <p><strong>📅 Geboortedatum:</strong> 2009</p>
+        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
+      </div>
+    </div>
+    <!-- Ermal -->
+    <div class="idcard">
+      <div class="idcard-header">AKOMORADA IDENTITEITSKAART</div>
+      <div class="idcard-body">
+        <img src="foto5.JPG" alt="Ermal Terlo">
+        <p><strong>👤 Naam:</strong> Ermal Terlo</p>
+        <p><strong>🎖️ Rol:</strong> Ballieman</p>
+        <p><strong>📍 Plaats:</strong> Vrellë</p>
+        <p><strong>📅 Geboortedatum:</strong> 2011</p>
+        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
+      </div>
+    </div>
+    <!-- Agon -->
+    <div class="idcard">
+      <div class="idcard-header">AKOMORADA IDENTITEITSKAART</div>
+      <div class="idcard-body">
+        <img src="foto4.JPG" alt="Agon Zemelbok">
+        <p><strong>👤 Naam:</strong> Agon Zemelbok</p>
+        <p><strong>🎖️ Rol:</strong> Teamleider</p>
+        <p><strong>📍 Plaats:</strong> Vrellë</p>
+        <p><strong>📅 Geboortedatum:</strong> 2004</p>
+        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
+      </div>
     </div>
   </div>
 
-  <!-- Rij 1, kolom 2 -->
-  <div style="background: #fff; border: 2px solid #d40000; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); overflow: hidden; font-family: Arial, sans-serif; padding-bottom: 20px;">
-    <div style="background: #d40000; color: white; padding: 10px 15px; text-align: center; font-weight: bold; white-space: normal; word-wrap: break-word;">AKOMORADA IDENTITEITSKAART</div>
-    <div style="padding: 15px;">
-      <img src="foto2.JPG" alt="Roadman Loti" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;">
-      <p><strong>👤 Naam:</strong> Roadman Loti</p>
-      <p><strong>🎖️ Rol:</strong> Directeur</p>
-      <p><strong>📍 Plaats:</strong> Vrellë</p>
-      <p><strong>📅 Geboortedatum:</strong> 2011</p>
-      <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-    </div>
+  <div class="footer">
+
   </div>
 
-  <!-- Rij 1, kolom 3 -->
-  <div style="background: #fff; border: 2px solid #d40000; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); overflow: hidden; font-family: Arial, sans-serif; padding-bottom: 20px;">
-    <div style="background: #d40000; color: white; padding: 10px 15px; text-align: center; font-weight: bold;">AKOMORADA IDENTITEITSKAART</div>
-    <div style="padding: 15px;">
-      <img src="foto3.JPG" alt="Ardit Duda Stoplicht" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;">
-      <p><strong>👤 Naam:</strong> Ardit Duda Stoplicht</p>
-      <p><strong>🎖️ Rol:</strong> Mieke's Prioriteitencoördinator</p>
-      <p><strong>📍 Plaats:</strong> Vrellë</p>
-      <p><strong>📅 Geboortedatum:</strong> 2006</p>
-      <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-    </div>
-  </div>
 
-  <!-- Rij 2, kolom 1 -->
-  <div style="background: #fff; border: 2px solid #d40000; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); overflow: hidden; font-family: Arial, sans-serif; padding-bottom: 20px;">
-    <div style="background: #d40000; color: white; padding: 10px 15px; text-align: center; font-weight: bold;">AKOMORADA IDENTITEITSKAART</div>
-    <div style="padding: 15px;">
-      <img src="foto6.PNG" alt="Altin Fransman" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;">
-      <p><strong>👤 Naam:</strong> Altin Fransman</p>
-      <p><strong>🎖️ Rol:</strong> Slachtoffer</p>
-      <p><strong>📍 Plaats:</strong> Vrellë</p>
-      <p><strong>📅 Geboortedatum:</strong> 2009</p>
-      <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-    </div>
-  </div>
-
-  <!-- Rij 2, kolom 2 -->
-  <div style="background: #fff; border: 2px solid #d40000; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); overflow: hidden; font-family: Arial, sans-serif; padding-bottom: 20px;">
-    <div style="background: #d40000; color: white; padding: 10px 15px; text-align: center; font-weight: bold;">AKOMORADA IDENTITEITSKAART</div>
-    <div style="padding: 15px;">
-      <img src="foto5.JPG" alt="Ermal Terlo" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;">
-      <p><strong>👤 Naam:</strong> Ermal Terlo</p>
-      <p><strong>🎖️ Rol:</strong> Ballieman</p>
-      <p><strong>📍 Plaats:</strong> Vrellë</p>
-      <p><strong>📅 Geboortedatum:</strong> 2011</p>
-      <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-    </div>
-  </div>
-
-  <!-- Rij 2, kolom 3 -->
-  <div style="background: #fff; border: 2px solid #d40000; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); overflow: hidden; font-family: Arial, sans-serif; padding-bottom: 20px;">
-    <div style="background: #d40000; color: white; padding: 10px 15px; text-align: center; font-weight: bold;">AKOMORADA IDENTITEITSKAART</div>
-    <div style="padding: 15px;">
-      <img src="foto4.JPG" alt="Agon Zemelbok" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;">
-      <p><strong>👤 Naam:</strong> Agon Zemelbok</p>
-      <p><strong>🎖️ Rol:</strong> Teamleider</p>
-      <p><strong>📍 Plaats:</strong> Vrellë</p>
-      <p><strong>📅 Geboortedatum:</strong> 2004</p>
-      <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-    </div>
-  </div>
-
-</div>
-
-</body>
 
 </body>
 </html>
