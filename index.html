@@ -290,21 +290,22 @@
     <source src="mijnvideo.mp4" type="video/mp4">
     Je browser ondersteunt deze video niet.
   </video>
-
- <div class="button-container">
+  <div class="button-container">
   <button id="openGoogleFormBtn">Dien klacht in voor een rechtzaak</button>
   <button id="newRuleRequestBtn">Nieuwe regel aanvragen</button>
   <button id="newAdditionBtn">Nieuwe toevoeging in de site</button> 
 </div>
 
-    <script>
+<script>
   document.getElementById('openGoogleFormBtn').addEventListener('click', () => {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSc21Ml4j7DvYmP-mxpqqSG2GBKMJRNvADiATtHzoIy6aDLTbw/viewform', '_blank');
   });
+
   document.getElementById('newRuleRequestBtn').addEventListener('click', () => {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSdU4wFQby2x1PvKmpJwnaxGLWLCry4MsZX4gtUNAzeuwzke-Q/viewform', '_blank');
   });
-      document.getElementById('openGoogleFormBtn').addEventListener('click', () => {
+
+  document.getElementById('newAdditionBtn').addEventListener('click', () => {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSdZAuxdpyewJ4S369mf0nvLqs0ICqeTq3Mc94tGrOYqfJGc3A/viewform', '_blank');
   });
 </script>
