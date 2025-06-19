@@ -36,6 +36,7 @@
     min-height: 60px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
   .case-item:hover {
     background: #004466;
@@ -70,6 +71,39 @@
     border-radius: 8px;
     line-height: 1.6;
   }
+  /* Toegevoegde stijl voor de verwijder knop */
+  .delete-btn {
+    background: transparent;
+    color: #f00;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 8px;
+    font-weight: bold;
+    line-height: 1;
+  }
+  .delete-btn:hover {
+    color: #ff4444;
+  }
+  /* Stijl voor + voeg nieuwe rechtszaak toe knop */
+  #add-case-btn {
+    background: #00ff88;
+    color: #121212;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #00ff8888;
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: block;
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #add-case-btn:hover {
+    background: #00cc66;
+  }
 </style>
 </head>
 <body>
@@ -77,6 +111,8 @@
 <h1>Rechtszaken Akomorada</h1>
 
 <button onclick="location.href='index.html'" style="margin-bottom:20px;">← Terug naar Home</button>
+
+<button id="add-case-btn">+ Voeg nieuwe rechtszaak toe</button>
 
 <!-- Hier staat de lijst -->
 <div id="case-list" class="case-list"></div>
@@ -159,6 +195,8 @@
   const personContentEl = document.getElementById('person-content');
   const backToCaseBtn = document.getElementById('back-to-case');
 
+  const addCaseBtn = document.getElementById('add-case-btn');
+
   let currentCase = null;
 
   // Check of rechtszaak actief is (datum check)
@@ -174,17 +212,49 @@
     cases.forEach(c => {
       const div = document.createElement('div');
       div.className = 'case-item';
-      // Toon ingekorte titel met tooltip volledige titel
-      const shortTitle = 'Rechtszaak Egzon & Ardit';
-      div.textContent = shortTitle;
-      div.title = c.title;
+
+      // Linker tekst: korte titel met tooltip volledige titel
+      const shortTitle = c.title.length > 40 ? c.title.slice(0, 37) + '...' : c.title;
+      const titleSpan = document.createElement('span');
+      titleSpan.textContent = shortTitle;
+      titleSpan.title = c.title;
 
       if (isCaseActive(c.date)) {
-        div.onclick = () => openCase(c.id);
+        titleSpan.style.cursor = 'pointer';
+        titleSpan.onclick = () => openCase(c.id);
       } else {
         div.classList.add('inactive');
-        div.title = 'Deze rechtszaak is gesloten en niet meer actief.';
+        titleSpan.title = 'Deze rechtszaak is gesloten en niet meer actief.';
+        titleSpan.style.cursor = 'default';
       }
+
+      div.appendChild(titleSpan);
+
+      // Rechter delete knop (drie puntje vervangen door kruisje)
+      if (isCaseActive(c.date)) {
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'delete-btn';
+        deleteBtn.title = 'Verwijder deze rechtszaak';
+        deleteBtn.textContent = '×'; // kruisje
+        deleteBtn.onclick = (e) => {
+          e.stopPropagation();
+          if (confirm(`Weet je zeker dat je de rechtszaak "${c.title}" wilt verwijderen?`)) {
+            const index = cases.findIndex(cs => cs.id === c.id);
+            if (index !== -1) {
+              cases.splice(index, 1);
+              renderCaseList();
+              if (currentCase && currentCase.id === c.id) {
+                currentCase = null;
+                caseDetailsEl.style.display = 'none';
+                personDetailsEl.style.display = 'none';
+                caseListEl.style.display = 'grid';
+              }
+            }
+          }
+        };
+        div.appendChild(deleteBtn);
+      }
+
       caseListEl.appendChild(div);
     });
     caseListEl.style.display = 'grid';
@@ -199,7 +269,19 @@
 
     caseTitleEl.textContent = currentCase.title;
     caseDateEl.textContent = currentCase.displayDate;
-    caseDescriptionEl.innerHTML = currentCase.description;
+    caseDescriptionEl.innerHTML = currentCase.description || '<p>Geen omschrijving beschikbaar voor deze rechtszaak.</p>';
+
+    // Verberg knoppen als er geen personen zijn
+    if (currentCase.persons && currentCase.persons.egzon) {
+      btnEgzon.style.display = 'inline-block';
+    } else {
+      btnEgzon.style.display = 'none';
+    }
+    if (currentCase.persons && currentCase.persons.ardit) {
+      btnArdit.style.display = 'inline-block';
+    } else {
+      btnArdit.style.display = 'none';
+    }
 
     caseListEl.style.display = 'none';
     caseDetailsEl.style.display = 'block';
@@ -233,7 +315,56 @@
   btnEgzon.onclick = () => openPerson('egzon');
   btnArdit.onclick = () => openPerson('ardit');
 
-  // Start met lijst tonen
+  // Toevoegen nieuwe rechtszaak met persoonsdata
+  addCaseBtn.onclick = () => {
+    const password = prompt("Voer wachtwoord in om een rechtszaak toe te voegen:");
+    if (password !== 'akomorada2025') {
+      alert("Ongeldig wachtwoord.");
+      return;
+    }
+
+    const title = prompt("Titel van rechtszaak:");
+    const displayDate = prompt("Weergavedatum (bijv. Zondag 22 juni 2025):");
+    const closeDate = prompt("Sluitingsdatum in ISO (bijv. 2025-06-22T23:59:00):");
+
+    if (!title || !displayDate || !closeDate) {
+      alert("Alle velden zijn verplicht.");
+      return;
+    }
+
+    const persons = {};
+
+    if (confirm("Wil je data toevoegen voor ...?")) {
+      const egzonName = prompt("Naam persoon :", "Voornaam \"bijnaam\" achternaam");
+      const egzonContent = prompt("Tekst voor wat die persoon heeft gedaan.:", "<p>Voer hier de details in...</p>");
+      if (egzonName && egzonContent) {
+        persons.egzon = { name: egzonName, content: egzonContent };
+      }
+    }
+
+    if (confirm("Wil je data toevoegen voor ...?")) {
+      const arditName = prompt("Naam persoon:", "Voornaam \"bijnaam\" achternaam");
+      const arditContent = prompt("Tekst voor wat die persoon heeft gedaan.:", "<p>Voer hier de details in...</p>");
+      if (arditName && arditContent) {
+        persons.ardit = { name: arditName, content: arditContent };
+      }
+    }
+
+    const newId = 'zaak-' + Date.now();
+
+    cases.push({
+      id: newId,
+      title,
+      date: closeDate,
+      displayDate,
+      description: `<p>Geen omschrijving beschikbaar voor deze rechtszaak.</p>`,
+      persons
+    });
+
+    renderCaseList();
+  };
+
+  // Init
   renderCaseList();
 </script>
 
