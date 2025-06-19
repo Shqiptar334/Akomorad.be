@@ -7,40 +7,6 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     body {
-      <div class="rechtszaak-teller">
-  📅 Deze maand zijn er <span id="rechtszaken-count">0</span> rechtszaken
-</div>
-      <script>
-  // Ophalen van de huidige maand
-  const currentMonth = new Date().getMonth();
-  const storedData = JSON.parse(localStorage.getItem("rechtszakenData")) || {
-    month: currentMonth,
-    count: 0
-  };
-
-  // Als het een nieuwe maand is, reset de teller
-  if (storedData.month !== currentMonth) {
-    storedData.month = currentMonth;
-    storedData.count = 0;
-    localStorage.setItem("rechtszakenData", JSON.stringify(storedData));
-  }
-
-  // Toon de teller
-  document.getElementById("rechtszaken-count").textContent = storedData.count;
-
-  // (optioneel) Admin knop om teller handmatig te verhogen:
-  // Rechtszaken verhogen (alleen zichtbaar voor beheer)
-  function voegRechtszaakToe() {
-    storedData.count += 1;
-    localStorage.setItem("rechtszakenData", JSON.stringify(storedData));
-    document.getElementById("rechtszaken-count").textContent = storedData.count;
-  }
-
-  // Uncomment als je een testknop wilt
-  // voegRechtszaakToe(); // ← voorbeeld
-</script>
-
-
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #ffffff;
@@ -217,26 +183,6 @@
     .email-button:hover {
       background-color: #45a049;
     }
-      .rechtszaak-teller {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  background-color: #00bfff;
-  color: #121212;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1rem;
-  box-shadow: 0 0 12px #00bfff88;
-  z-index: 1000;
-}
-
-@media screen and (max-width: 600px) {
-  .rechtszaak-teller {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-}
   </style>
 </head>
 <body>
