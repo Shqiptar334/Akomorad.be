@@ -13,7 +13,6 @@
       color: #000;
       padding: 20px 10px;
       line-height: 1.5;
-      
     }
     h1, h2 {
       text-align: center;
@@ -34,7 +33,7 @@
       max-width: 300px;
       height: auto;
     }
-    .cards-container, .idcards-container {
+    .cards-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
@@ -42,7 +41,7 @@
       padding-bottom: 2em;
       max-width: 1200px;
     }
-    .card, .idcard {
+    .card {
       background: #f8f8f8;
       border: 2px solid #000;
       border-radius: 10px;
@@ -127,68 +126,13 @@
       color: #444;
       margin-top: 3em;
     }
-    @media screen and (max-width: 600px) {
-      .card, .idcard {
-        width: 95%;
-        max-width: none;
-      }
-    }
-    .idcard {
-      background: #fff;
-      border: 2px solid #d40000;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-      overflow: hidden;
-      padding-bottom: 20px;
-      font-family: Arial, sans-serif;
-    }
-    .idcard-header {
-      background: #d40000;
-      color: white;
-      padding: 10px 15px;
-      text-align: center;
-      font-weight: bold;
-      white-space: normal;
-      word-wrap: break-word;
-    }
-    .idcard-body {
-      padding: 15px;
-    }
-    .idcard-body img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 1em;
-    }
-    .idcard-body p {
-      margin: 5px 0;
-      font-size: 0.9rem;
-    }
-    .contact {
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    .email-button {
-      display: inline-block;
-      background-color: #4CAF50; /* Groen */
-      color: white;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-    }
-
-    .email-button:hover {
-      background-color: #45a049;
-    }
   </style>
 </head>
 <body>
 
-  <img src="akomorada-logo.png" alt="Akomorada Logo" class="logo" />
- <button onclick="location.href='rechtszaken.html'" style="
+<img src="akomorada-logo.png" alt="Akomorada Logo" class="logo" />
+
+<button onclick="location.href='rechtszaken.html'" style="
   background:#00bfff;
   color:#121212;
   border:none;
@@ -225,15 +169,12 @@
 ">
   👥 Bekijk de Rollen van de Leden
 </button>
-</div>
 
-  
-  <h1>AKOMORAD</h1>
-  <p class="subtitle">Eén familie. Eén woord. Eén hartslag.</p>
+<h1>AKOMORAD</h1>
+<p class="subtitle">Eén familie. Eén woord. Eén hartslag.</p>
 
-  <!-- Persoonlijke kaarten -->
-  <div class="cards-container">
-    <div class="card">
+<div class="cards-container">
+  <div class="card">
       <h3>Ardit Mieke's Prioriteitencoördinator <span class="badge">Duda Stoplicht</span></h3>
       <p class="description">Bekend als topchauffeur, laat soms de Akomorada hangen (...) . Staat ook bekend voor nipli nipli of dupli nipli kabels. En staat ook nog is bekend voor de laatste minuut af te zeggen omdat hij al plannen heeft.</p>
       <p class="contact">📧dudastoplicht@Akomorad.be<br>📞 +32 490 12 34 56</p>
@@ -273,21 +214,21 @@
       <p class="description">De oudste en meest gespierde van Akomorada. Staat bekend voor zijn eeuwige trouw aan zijn gsm hij kan gewoon niet veranderen. Tanken? Nooit van gehoord. Maar als de auto vol is? Dan vliegt hij er sneller naartoe dan een raket. Ook legendarisch om zijn onverwachte opmerkingen die iedereen doen huilen van het lachen.</p>
       <p class="contact">📧tonirrota@Akomorad.be<br>📞 +32 454 15 21 98</p>
     </div>
-  </div>
+</div>
 
-  <hr class="separator" />
+<hr class="separator" />
 
-  <h2>📖 A e din si ka fillu?</h2>
-  <div class="reglement" style="border-color:#000;">
-    <p>Akomorad is allemaal begonnen bij garage DOA toen Mustafë Fetahaj zijn garage had gekocht moest iedereen helpen om het te organiseren en Egzon Kiel zei tegen Altin Fransman "ga een Akomorad halen" maar Fransman wist niet wat dat was en zo was het allemaal begonnen.</p>
-    <p>Akomorad was nog niet zo poplulair bij de familie omdat bijna niemand da gebruikte maar op een nacht rond 2u in de nacht had Roadman Loti Fransman wakker gemaakt en hij zij tegen Fransman "Altin babi roept jouw om Akomorada te gaan halen" 
-      en toen werd het heel populair in de familie maar echt heel populair QITU FILLOI TRENDI</p>
-  </div>
+<h2>📖 A e din si ka fillu?</h2>
+<div class="reglement" style="border-color:#000;">
+  <p>Akomorad is allemaal begonnen bij garage DOA toen Mustafë Fetahaj zijn garage had gekocht moest iedereen helpen om het te organiseren en Egzon Kiel zei tegen Altin Fransman "ga een Akomorad halen" maar Fransman wist niet wat dat was en zo was het allemaal begonnen.</p>
+  <p>Akomorad was nog niet zo poplulair bij de familie omdat bijna niemand da gebruikte maar op een nacht rond 2u in de nacht had Roadman Loti Fransman wakker gemaakt en hij zij tegen Fransman "Altin babi roept jouw om Akomorada te gaan halen" 
+    en toen werd het heel populair in de familie maar echt heel populair QITU FILLOI TRENDI</p>
+</div>
 
-  <h2>🔱 Reglement van Akomorada</h2>
-  <div class="reglement">
+<h2>🔱 Reglement van Akomorada</h2>
+<div class="reglement">
 <strong>“Eén familie. Eén woord. Eén hartslag.”</strong>
-    WIE OP PAPIER TEKENT HOUD ZICH OOK AAN DE REGELS OP DE SITE!!!
+     WIE OP PAPIER TEKENT HOUD ZICH OOK AAN DE REGELS OP DE SITE!!!
     🧑‍🔬 1. Loyaliteit is wet
     1. Je mag ons nooit verlaten voor iets of iemand.
     2. Akomorada komt altijd op de eerste plaats – boven relaties, vrienden.
@@ -350,13 +291,14 @@
 
     🧑‍⚖️ 12. Rechtzaken
     39. Broers leiden nooit een rechtzaak in verband met eerlijkheid en vertrouwen
-  </div>
+</div>
 
-  <video controls>
-    <source src="mijnvideo.mp4" type="video/mp4">
-    Je browser ondersteunt deze video niet.
-  </video>
-  <div class="button-container">
+<video controls>
+  <source src="mijnvideo.mp4" type="video/mp4">
+  Je browser ondersteunt deze video niet.
+</video>
+
+<div class="button-container">
   <button id="openGoogleFormBtn">Dien klacht in voor een rechtszaak</button>
   <button id="newRuleRequestBtn">Nieuwe regel aanvragen</button>
   <button id="newAdditionBtn">Nieuwe toevoeging in de site</button> 
@@ -375,95 +317,7 @@
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSdZAuxdpyewJ4S369mf0nvLqs0ICqeTq3Mc94tGrOYqfJGc3A/viewform', '_blank');
   });
 </script>
-
-  <h2 style="text-align:center; margin-top:4em; font-size:2.5rem;">🪪 Akomorad ID‑Kaarten</h2>
-  <div class="idcards-container">
-    <!-- Egzon -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto8.JPG" alt="Egzon Xoni Kiel">
-        <p><strong>👤 Naam:</strong> Egzon Xoni Kiel</p>
-        <p><strong>🎖️ Rol:</strong> Uitvinder</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2005</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-    </div>
-    <!-- Roadman -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto2.JPG" alt="Roadman Loti">
-        <p><strong>👤 Naam:</strong> Roadman Loti</p>
-        <p><strong>🎖️ Rol:</strong> Directeur</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2011</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-    </div>
-    <!-- Ardit -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto3.JPG" alt="Ardit Duda Stoplicht">
-        <p><strong>👤 Naam:</strong> Ardit Duda Stoplicht</p>
-        <p><strong>🎖️ Rol:</strong> Mieke's Prioriteitencoördinator</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2006</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-    </div>
-    <!-- Altin -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto6.PNG" alt="Altin Fransman">
-        <p><strong>👤 Naam:</strong> Altin Fransman</p>
-        <p><strong>🎖️ Rol:</strong> Slachtoffer</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2009</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-    </div>
-    <!-- Ermal -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto5.JPG" alt="Ermal Terlo">
-        <p><strong>👤 Naam:</strong> Ermal Terlo</p>
-        <p><strong>🎖️ Rol:</strong> Ballieman</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2011</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-    </div>
-    <!-- Agon -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto4.JPG" alt="Agon Zemelbok">
-        <p><strong>👤 Naam:</strong> Agon Zemelbok</p>
-        <p><strong>🎖️ Rol:</strong> Teamleider</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2004</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-      </div>
-       <!-- Driton -->
-       <div class="idcard toni-rota-card">
-  <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-  <div class="idcard-body">
-    <img src="foto27.JPG" alt="Toni Rrota">
-    <p><strong>👤 Naam:</strong> Toni Rrota</p>
-    <p><strong>🎖️ Rol:</strong> Kolonel</p>
-    <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-    <p><strong>📅 Geboortejaar:</strong> 2001</p>
-    <p><strong>🗓️ Lid sinds:</strong> 19 oktober 2024</p>
-  </div>
-    </div>   
-  </div>
-   <!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -476,93 +330,6 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
-  <div class="footer">
-
-  </div>
-
-<p class="contact">
-  <a class="email-button" href="mailto:fetahajelioti@gmail.com">📧 Stuur een e-mail naar Roadman Privé</a><br>
-  <a class="phone-link" href="tel:+32470175351">+32 470 17 53 51</a>
-</p>
-<p class="contact">
-  <a class="email-button" href="mailto:tickets@akomorad.p.tawk.email">📧 Stuur een e-mail naar het Ticket Team</a>
-</p>
-
-<div class="familie-quote">
-  Wij zijn niet zomaar één familie, wij zijn één woord, één hartslag, één bloed!!!<br>
-  A jemi live? Akomorad Akomorad!! Zemra jeme!! 
-</div>
-
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.contact {
-  text-align: center;
-  margin: 20px 0;
-  font-size: 1.2rem;
-}
-
-.email-button,
-.phone-link {
-  display: inline-block;
-  margin: 10px;
-  text-decoration: none;
-  color: #fff;
-  background-color: #007bff;
-  padding: 12px 20px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-}
-
-.email-button:hover,
-.phone-link:hover {
-  background-color: #0056b3;
-}
-
-.familie-quote {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #111;
-  margin: 40px auto;
-  padding: 20px;
-  max-width: 800px;
-  line-height: 1.5;
-  background: #f8f8f8;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  letter-spacing: 1px;
-}
-
-@media screen and (max-width: 600px) {
-  .familie-quote {
-    font-size: 1.4rem;
-    padding: 15px;
-    margin: 20px 10px;
-  }
-
-  .email-button,
-  .phone-link {
-    display: block;
-    width: 80%;
-    margin: 10px auto;
-    font-size: 1rem;
-  }
-
-  .contact {
-    font-size: 1rem;
-  }
-}
-
-</style>
-   
-<div style="text-align: center; margin-top: 20px;">
-  <img src="foto29.png" alt="Brigada 141 Akomorad" style="width: 95vw; max-width: 300px; height: auto;">
-</div>
 
 </body>
 </html>
