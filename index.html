@@ -65,6 +65,32 @@
       font-size: 0.85rem;
       margin-left: 10px;
     }
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 30px auto;
+}
+
+.nav-buttons button {
+  background: #00bfff;
+  color: #121212;
+  border: none;
+  padding: 16px 28px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 0 12px #00bfff88;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.nav-buttons button:hover {
+  background-color: #009acd;
+  transform: scale(1.05);
+}
+
     .description {
       color: #111;
       font-size: 0.95rem;
@@ -132,62 +158,11 @@
 
 <img src="akomorada-logo.png" alt="Akomorada Logo" class="logo" />
 
-<button onclick="location.href='rechtszaken.html'" style="
-  background:#00bfff;
-  color:#121212;
-  border:none;
-  padding:16px 28px;
-  border-radius:8px;
-  font-weight:bold;
-  font-size:1.2rem;
-  box-shadow:0 0 12px #00bfff88;
-  cursor:pointer;
-  width:100%;
-  max-width:400px;
-  display:block;
-  margin:20px auto;
-  text-align:center;
-">
-  ⚖️ Bekijk de Komende Rechtszaken van de Akomoradad
-</button>
-
-<button onclick="location.href='rollen.html'" style="
-  background:#00bfff;
-  color:#121212;
-  border:none;
-  padding:16px 28px;
-  border-radius:8px;
-  font-weight:bold;
-  font-size:1.2rem;
-  box-shadow:0 0 12px #00bfff88;
-  cursor:pointer;
-  width:100%;
-  max-width:400px;
-  display:block;
-  margin:20px auto;
-  text-align:center;
-">
-  👥 Bekijk de Rollen van de Leden
-</button>
-
-<button onclick="location.href='IDkaarten.html'" style="
-  background:#00bfff;
-  color:#121212;
-  border:none;
-  padding:16px 28px;
-  border-radius:8px;
-  font-weight:bold;
-  font-size:1.2rem;
-  box-shadow:0 0 12px #00bfff88;
-  cursor:pointer;
-  width:100%;
-  max-width:400px;
-  display:block;
-  margin:20px auto;
-  text-align:center;
-">
-  🪪Hier vindt je de ID kaarten van de Akomorada
-</button>
+<div class="nav-buttons">
+  <button onclick="location.href='rechtszaken.html'">⚖️ Komende Rechtszaken</button>
+  <button onclick="location.href='rollen.html'">👥 Rollen van de Leden</button>
+  <button onclick="location.href='IDkaarten.html'">🪪 ID Kaarten</button>
+</div>
 
 
 <h1>AKOMORAD</h1>
