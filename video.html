@@ -1,25 +1,91 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Video - Akomorada</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    nav {
+      margin-bottom: 20px;
+    }
+
+    .home-button {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .home-button:hover {
+      background-color: #45a049;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .video-container {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .home-button {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <a href="index.html">Home</a>
-  <a href="leden.html">Leden</a>
-  <a href="reglement.html">Reglement</a>
-  <a href="video.html">Video</a>
-  <a href="contact.html">Contact</a>
-  <a href="klacht.html">Dien Klacht In</a>
-</nav>
 
-  <h1>Onze Video</h1>
-  <video width="100%" controls>
-    <source src="mijnvideo.mp4" type="video/mp4">
-    Je browser ondersteunt deze video niet.
-  </video>
+  <div class="container">
+
+    <nav>
+      <a href="index.html" class="home-button">← Terug naar Home</a>
+    </nav>
+
+    <h1>Onze Video</h1>
+
+    <div class="video-container">
+      <video controls preload="metadata" poster="voorbeeld.jpg">
+        <source src="mijnvideo.mp4" type="video/mp4" />
+        Je browser ondersteunt deze video niet.
+      </video>
+    </div>
+
+  </div>
+
 </body>
 </html>
