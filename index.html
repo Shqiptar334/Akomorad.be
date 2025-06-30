@@ -279,10 +279,24 @@
     39. Broers leiden nooit een rechtzaak in verband met eerlijkheid en vertrouwen</div>
 
 <div class="button-container">
-  <button onclick="window.open('https://docs.google.com/forms/...')">Dien klacht in voor een rechtszaak</button>
-  <button onclick="window.open('https://docs.google.com/forms/...')">Nieuwe regel aanvragen</button>
-  <button onclick="window.open('https://docs.google.com/forms/...')">Nieuwe toevoeging in de site</button>
+  <button id="openGoogleFormBtn">Dien klacht in voor een rechtszaak</button>
+  <button id="newRuleRequestBtn">Nieuwe regel aanvragen</button>
+  <button id="newAdditionBtn">Nieuwe toevoeging in de site</button> 
 </div>
+
+<script>
+  document.getElementById('openGoogleFormBtn').addEventListener('click', () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSc21Ml4j7DvYmP-mxpqqSG2GBKMJRNvADiATtHzoIy6aDLTbw/viewform', '_blank');
+  });
+
+  document.getElementById('newRuleRequestBtn').addEventListener('click', () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSdU4wFQby2x1PvKmpJwnaxGLWLCry4MsZX4gtUNAzeuwzke-Q/viewform', '_blank');
+  });
+
+  document.getElementById('newAdditionBtn').addEventListener('click', () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSdZAuxdpyewJ4S369mf0nvLqs0ICqeTq3Mc94tGrOYqfJGc3A/viewform', '_blank');
+  });
+
 
 </script>
 <!--Start of Tawk.to Script-->
