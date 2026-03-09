@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: Shqiptar334/Akomorad.be
-  branch: main  # als je master gebruikt, verander dit in master
+  branch: main
 
 media_folder: "uploads"
 public_folder: "/uploads"
