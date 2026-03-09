@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: Shqiptar334/Akomorad.be
-  branch: main # verander naar master als je master gebruikt
+  branch: main  # als je master gebruikt, verander dit in master
 
 media_folder: "uploads"
 public_folder: "/uploads"
@@ -18,7 +18,8 @@ collections:
   - name: "rechtszaken"
     label: "Rechtszaken"
     files:
-      - file: "rechtszaken.html"
+      - name: "rechtszaken"
+        file: "rechtszaken.html"
         label: "Rechtszaken Pagina"
         fields:
           - { label: "Inhoud", name: "body", widget: "markdown" }
@@ -26,7 +27,8 @@ collections:
   - name: "rollen"
     label: "Rollen"
     files:
-      - file: "rollen.html"
+      - name: "rollen"
+        file: "rollen.html"
         label: "Rollen Pagina"
         fields:
           - { label: "Inhoud", name: "body", widget: "markdown" }
@@ -34,7 +36,8 @@ collections:
   - name: "IDkaarten"
     label: "ID Kaarten"
     files:
-      - file: "IDkaarten.html"
+      - name: "IDkaarten"
+        file: "IDkaarten.html"
         label: "ID Kaarten Pagina"
         fields:
           - { label: "Inhoud", name: "body", widget: "markdown" }
@@ -42,7 +45,8 @@ collections:
   - name: "video"
     label: "Video"
     files:
-      - file: "video.html"
+      - name: "video"
+        file: "video.html"
         label: "Video Pagina"
         fields:
           - { label: "Inhoud", name: "body", widget: "markdown" }
