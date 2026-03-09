@@ -2,237 +2,273 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rollen van Akomorad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akomorad | Rollen</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --bg:#0a0a0a;
+      --panel:#141414;
+      --text:#ffffff;
+      --muted:#d2d2d2;
+      --red:#c8102e;
+      --red-dark:#980b22;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 18px 40px rgba(0,0,0,.35);
+      --max:1200px;
     }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #f0f0f0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(200,16,46,.18), transparent 24%),
+        linear-gradient(180deg,#060606 0%,#0e0e0e 100%);
+      color:var(--text);
     }
-
-    .btn-home {
-      background-color: #00bfff;
-      color: #121212;
-      padding: 16px 32px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      box-shadow: 0 5px 15px #00bfffaa;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin-bottom: 50px;
-      display: inline-flex;
-      align-items: center;
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .topbar{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(10,10,10,.9);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
     }
-
-    .btn-home:hover {
-      box-shadow: 0 8px 25px #00d4ffcc;
-      transform: translateY(-4px);
+    .topbar-inner{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      min-height:76px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:16px;
+      padding:10px 0;
     }
-
-    .btn-home svg {
-      margin-right: 10px;
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{
+      width:50px;height:50px;object-fit:contain;border-radius:14px;background:#fff;padding:5px;
     }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 40px;
-      letter-spacing: 2px;
-      text-align: center;
-      text-shadow: 0 0 15px #00bfffcc;
-      user-select: none;
+    .brand-text strong{display:block;letter-spacing:.16em;text-transform:uppercase}
+    .brand-text span{display:block;color:#f3c5cd;font-size:.9rem}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}
+    .nav a{
+      padding:10px 14px;border-radius:999px;font-weight:700;transition:.2s ease;
     }
-
-    .rollen-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
-      width: 100%;
-      max-width: 1200px;
+    .nav a:hover,.nav a.active{background:var(--red)}
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
     }
-
-    .rol-card {
-      background: #121212dd;
-      border-radius: 16px;
-      padding: 24px 32px;
-      box-shadow: 0 8px 20px #00bfff66;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    .hero{
+      padding:36px 0 14px;
+      text-align:center;
     }
-
-    .rol-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 40px #00e0ffcc;
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(2rem,5vw,3.6rem);
     }
-
-    .rol-card img {
-      width: 100%;
-      max-width: 240px;
-      height: auto;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    .hero p{
+      margin:0 auto;
+      color:var(--muted);
+      max-width:760px;
     }
-
-    .rol-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 18px;
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      padding:24px 0 40px;
     }
-
-    .rol-emoji {
-      font-size: 2.8rem;
-      margin-bottom: 10px;
-      user-select: none;
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:.25s ease;
     }
-
-    .rol-titel {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #00bfff;
-      line-height: 1.3;
-      word-break: break-word;
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(200,16,46,.55);
     }
-
-    .rol-beschrijving {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #ddd;
+    .card img{
+      width:100%;
+      aspect-ratio:4/3.8;
+      object-fit:cover;
+      background:#111;
     }
-
-    .rol-beschrijving p {
-      margin-bottom: 1rem;
+    .content{padding:18px}
+    .emoji{
+      width:44px;height:44px;border-radius:50%;
+      display:grid;place-items:center;
+      background:var(--red);font-size:1.3rem;margin-bottom:12px;
     }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2.2rem;
-        margin-bottom: 30px;
-      }
-
-      .rol-card {
-        padding: 20px 24px;
-      }
+    .content h2{
+      margin:0 0 8px;
+      font-size:1.2rem;
+      line-height:1.3;
+    }
+    .content p{
+      margin:0;
+      color:#dfdfdf;
+      font-size:.96rem;
+    }
+    .footer{
+      padding:0 0 36px;
+    }
+    .footer-card{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px;
+      background:rgba(255,255,255,.03);
+      text-align:center;
+      color:#d7d7d7;
+    }
+    @media (max-width:1000px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:680px){
+      .grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <img src="akomorada-logo.png" alt="Akomorad logo">
+        <div class="brand-text">
+          <strong>AKOMORAD</strong>
+          <span>Eén familie. Eén woord. Eén hartslag.</span>
+        </div>
+      </a>
 
-  <a href="index.html" class="btn-home" aria-label="Terug naar homepagina">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#121212" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-    </svg>
-    Terug naar Home
-  </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="rollen.html" class="active">Rollen</a>
+        <a href="IDkaarten.html">ID-Kaarten</a>
+        <a href="rechtszaken.html">Rechtszaken</a>
+        <a href="video.html">Video</a>
+      </nav>
+    </div>
+  </header>
 
-  <h1>De Rollen van Akomorad</h1>
+  <main class="container">
+    <section class="hero">
+      <h1>De rollen van Akomorad</h1>
+      <p>
+        Elke persoon heeft binnen Akomorad een eigen rol, energie en betekenis.
+        Hieronder zie je de leden in een vaste, professionele stijl.
+      </p>
+    </section>
 
-  <div class="rollen-container">
+    <section class="grid">
+      <article class="card">
+        <img src="IMG_1947.jpeg" alt="Altin Fransman">
+        <div class="content">
+          <div class="emoji">😅</div>
+          <h2>Slachtoffer — Altin Fransman</h2>
+          <p>
+            Altin Fransman is het officiële slachtoffer. Hij kreeg ooit de opdracht
+            om een “Akomorad” te halen, terwijl dat woord eigenlijk niet bestond.
+            Sindsdien is hij een vaste mascotte binnen de groepsgrap.
+          </p>
+        </div>
+      </article>
 
-    <article class="rol-card">
-      <img src="IMG_1947.jpeg" alt="Altin Fransman">
-      <header class="rol-header">
-        <div class="rol-emoji">😅</div>
-        <h2 class="rol-titel">Slachtoffer (Altin Fransman)</h2>
-      </header>
-      <div class="rol-beschrijving">
-        <p>Altin Fransman is ons officiële Slachtoffer. Hij kreeg ooit de opdracht om een ‘Akomorad’ te halen – terwijl dat woord helemaal niet bestaat! 😂 Xoni Kiel bedacht het, en Altin mocht de pineut zijn. Sindsdien is hij de mascotte van onze groepsgrap.</p>
-      </div>
-    </article>
+      <article class="card">
+        <img src="foto3.JPG" alt="Ardit Duda Stoplicht">
+        <div class="content">
+          <div class="emoji">🚦</div>
+          <h2>Teamspeler — Ardit Duda Stoplicht</h2>
+          <p>
+            De man met stijl en stuurvermogen. Hij rijdt overal naartoe, kent shortcuts
+            en brengt kalmte, snelheid en een eigen vibe binnen de groep.
+          </p>
+        </div>
+      </article>
 
-    <article class="rol-card">
-      <img src="foto3.JPG" alt="Ardit Duda Stoplicht">
-      <header class="rol-header">
-        <div class="rol-emoji">🚦</div>
-        <h2 class="rol-titel">Teamspeler (Ardit Duda Stoplicht)</h2>
-      </header>
-      <div class="rol-beschrijving">
-        <p>De man met stijl en stuurvermogen. Hij rijdt overal naartoe, kent elke shortcut. Soms mysterieus, altijd scherp. Ardit brengt kalmte, snelheid en inzichten tegelijk.</p>
-      </div>
-    </article>
+      <article class="card">
+        <img src="foto2.JPG" alt="Roadman Loti">
+        <div class="content">
+          <div class="emoji">🏢</div>
+          <h2>Directeur — Roadman Loti</h2>
+          <p>
+            Regelt de formele kant van alles. Papierwerk, afspraken, organisatie en structuur:
+            hij is de man achter de schermen die ervoor zorgt dat alles blijft draaien.
+          </p>
+        </div>
+      </article>
 
-    <article class="rol-card">
-      <img src="foto2.JPG" alt="Roadman Loti">
-      <header class="rol-header">
-        <div class="rol-emoji">🏢</div>
-        <h2 class="rol-titel">Directeur (Roadman Loti)</h2>
-      </header>
-      <div class="rol-beschrijving">
-        <p>Roadman Loti regelt de formele kant van alles. Papierwerk, afspraken, en zorg dat alles volgens plan verloopt. Hij is de man achter de schermen die ervoor zorgt dat alles gesmeerd loopt.</p>
-      </div>
-    </article>
+      <article class="card">
+        <img src="foto5.JPG" alt="Ermal Terlo">
+        <div class="content">
+          <div class="emoji">⚽</div>
+          <h2>Ballieman — Ermal Terlo</h2>
+          <p>
+            De toekomstige profvoetballer. Brengt sport, humor en snelheid in de groep.
+            Bekend om zijn energie en aanwezigheid.
+          </p>
+        </div>
+      </article>
 
-    <article class="rol-card">
-      <img src="foto5.JPG" alt="Ermal Terlo">
-      <header class="rol-header">
-        <div class="rol-emoji">⚽</div>
-        <h2 class="rol-titel">Ballieman (Ermal Terlo)</h2>
-      </header>
-      <div class="rol-beschrijving">
-        <p>De toekomstige profvoetballer. Altijd onderweg naar de top met bal aan de voet. Hij brengt sport, humor en snelheid in het team. Onze Ermal.</p>
-      </div>
-    </article>
+      <article class="card">
+        <img src="foto8.JPG" alt="Xoni Kiel">
+        <div class="content">
+          <div class="emoji">💡</div>
+          <h2>Uitvinder — Xoni Kiel</h2>
+          <p>
+            De bedenker van “Akomorad”. Als iemand iets geks, geniaals of onvergetelijks bedenkt,
+            is de kans groot dat het van hem komt.
+          </p>
+        </div>
+      </article>
 
-    <article class="rol-card">
-      <img src="foto8.JPG" alt="Xoni Kiel">
-      <header class="rol-header">
-        <div class="rol-emoji">💡</div>
-        <h2 class="rol-titel">Uitvinder (Xoni Kiel)</h2>
-      </header>
-      <div class="rol-beschrijving">
-        <p>De bedenker van “Akomorad”. Als er iemand iets geks of geniaals verzint, is het Xoni. Zijn creativiteit is de motor achter de chaos. En dat vinden we geweldig.</p>
-      </div>
-    </article>
+      <article class="card">
+        <img src="foto4.JPG" alt="Agon Zemelbok">
+        <div class="content">
+          <div class="emoji">👥</div>
+          <h2>Teamleider — Agon Zemelbok</h2>
+          <p>
+            Het ankerpunt van de groep. Hij bewaart overzicht, houdt mensen betrokken
+            en zorgt dat de balans binnen Akomorad blijft bestaan.
+          </p>
+        </div>
+      </article>
 
-    <article class="rol-card">
-      <img src="foto4.JPG" alt="Agon Zemelbok Strakulla">
-      <header class="rol-header">
-        <div class="rol-emoji">👥</div>
-        <h2 class="rol-titel">Teamleider (Agon Zemelbok Strakulla)</h2>
-      </header>
-      <div class="rol-beschrijving">
-        <p>Agon is het ankerpunt van de groep. Hij zorgt dat iedereen betrokken blijft en verdeelt duidelijk de taken. Met zijn rustige aanpak houdt hij de balans binnen de groep en zorgt hij dat alles soepel verloopt. Hij is de stille kracht achter onze vriendschap.</p>
-      </div>
-    </article>
+      <article class="card">
+        <img src="foto27.JPG" alt="Toni Rrota">
+        <div class="content">
+          <div class="emoji">🎖️</div>
+          <h2>Kolonel — Toni Rrota</h2>
+          <p>
+            Strategisch, kalm en doortastend. Hij denkt vooruit, analyseert situaties
+            scherp en zorgt dat er altijd een plan klaarstaat.
+          </p>
+        </div>
+      </article>
 
-    <article class="rol-card">
-      <img src="foto27.JPG" alt="Toni Rrota">
-      <header class="rol-header">
-        <div class="rol-emoji">🎖️</div>
-        <h2 class="rol-titel">Kolonel (Toni Rrota)</h2>
-      </header>
-      <div class="rol-beschrijving">
-        <p>Toni is onze strategische denker en altijd klaar met een plan B als anderen het even niet meer weten. Zijn bijnaam ‘de Kolonel’ zegt precies wie hij is: tactisch, kalm en doortastend. Hij analyseert situaties scherp, denkt vooruit en zorgt dat we nooit voor verrassingen komen te staan. Dankzij zijn rust en inzicht is hij onmisbaar voor het succes van onze groep.</p>
-      </div>
-    </article>
-    <article class="rol-card">
-      <header class="rol-header">
-        <div class="rol-emoji">🎯</div>
-        <h2 class="rol-titel">Coach (Erin Plofkraak)</h2>
-      </header>
-      <div class="rol-beschrijving">
-        <p>Erin Plofkraak begeleidt en motiveert iedereen persoonlijk. Hij helpt ons beter te worden en haalt het beste uit iedereen naar boven.</p>
-      </div>
-    </article>
+      <article class="card">
+        <img src="foto1.JPG" alt="Erin Plofkraak">
+        <div class="content">
+          <div class="emoji">🎯</div>
+          <h2>Coach — Erin Plofkraak</h2>
+          <p>
+            Begeleidt en motiveert iedereen persoonlijk. Hij helpt de groep beter te worden
+            en haalt het beste uit de anderen naar boven.
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
 
-  </div>
+  <footer class="footer">
+    <div class="footer-card">
+      <strong>AKOMORAD</strong><br>
+      
+    </div>
+  </footer>
 </body>
 </html>
