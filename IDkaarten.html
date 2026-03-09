@@ -1,161 +1,295 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Akomorad ID-Kaarten</title>
-  <link rel="stylesheet" href="stijl.css"> <!-- Als je CSS extern hebt -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akomorad | ID-Kaarten</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #000;
-      padding: 20px;
-      margin: 0;
-      text-align: center;
+    :root{
+      --bg:#0a0a0a;
+      --panel:#141414;
+      --panel-2:#ffffff;
+      --text:#ffffff;
+      --muted:#d2d2d2;
+      --red:#c8102e;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 18px 40px rgba(0,0,0,.35);
+      --max:1200px;
     }
-    .idcards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px 0;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(200,16,46,.18), transparent 24%),
+        linear-gradient(180deg,#060606 0%,#0f0f0f 100%);
+      color:var(--text);
     }
-    .idcard {
-      background: #fff;
-      border: 2px solid #d40000;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-      overflow: hidden;
-      padding-bottom: 20px;
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .topbar{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(10,10,10,.9);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
     }
-    .idcard-header {
-      background: #d40000;
-      color: white;
-      padding: 10px 15px;
-      font-weight: bold;
+    .topbar-inner{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      min-height:76px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:16px;
+      padding:10px 0;
     }
-    .idcard-body {
-      padding: 15px;
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{width:50px;height:50px;object-fit:contain;border-radius:14px;background:#fff;padding:5px}
+    .brand-text strong{display:block;letter-spacing:.16em;text-transform:uppercase}
+    .brand-text span{display:block;color:#f3c5cd;font-size:.9rem}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}
+    .nav a{padding:10px 14px;border-radius:999px;font-weight:700;transition:.2s ease}
+    .nav a:hover,.nav a.active{background:var(--red)}
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
     }
-    .idcard-body img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 1em;
+    .hero{
+      text-align:center;
+      padding:36px 0 14px;
     }
-    .idcard-body p {
-      margin: 5px 0;
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(2rem,5vw,3.6rem);
     }
-    .back-button {
-      margin-top: 20px;
-      display: inline-block;
-      background-color: #000;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
+    .hero p{
+      margin:0 auto;
+      color:var(--muted);
+      max-width:760px;
     }
-    .back-button:hover {
-      background-color: #333;
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      padding:24px 0 40px;
+    }
+    .idcard{
+      background:var(--panel-2);
+      color:#111;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:3px solid var(--red);
+    }
+    .idcard-header{
+      background:var(--red);
+      color:#fff;
+      padding:14px 18px;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      text-align:center;
+    }
+    .idcard-body{
+      padding:18px;
+    }
+    .idcard-body img{
+      width:100%;
+      aspect-ratio:4/4.2;
+      object-fit:cover;
+      border-radius:16px;
+      margin-bottom:14px;
+      background:#ddd;
+    }
+    .idcard-body h2{
+      margin:0 0 12px;
+      font-size:1.2rem;
+      color:#111;
+    }
+    .meta{
+      display:grid;
+      gap:8px;
+      font-size:.96rem;
+    }
+    .meta span{
+      background:#f6f6f6;
+      border:1px solid #e6e6e6;
+      border-radius:12px;
+      padding:10px 12px;
+    }
+    .footer{
+      padding:0 0 36px;
+    }
+    .footer-card{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px;
+      background:rgba(255,255,255,.03);
+      text-align:center;
+      color:#d7d7d7;
+    }
+    @media (max-width:1000px){
+      .cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:680px){
+      .cards{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <h1>🪪 Akomorad ID-Kaarten</h1>
-  <a href="index.html" class="back-button">← Ga terug naar Home</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <img src="akomorada-logo.png" alt="Akomorad logo">
+        <div class="brand-text">
+          <strong>AKOMORAD</strong>
+          <span>Eén familie. Eén woord. Eén hartslag.</span>
+        </div>
+      </a>
 
-  <div class="idcards-container">
-    <!-- Egzon -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto8.JPG" alt="Egzon Xoni Kiel">
-        <p><strong>👤 Naam:</strong> Egzon Xoni Kiel</p>
-        <p><strong>🎖️ Rol:</strong> Uitvinder</p>
-        <p><strong>📍 Plaats:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2005</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="rollen.html">Rollen</a>
+        <a href="IDkaarten.html" class="active">ID-Kaarten</a>
+        <a href="rechtszaken.html">Rechtszaken</a>
+        <a href="video.html">Video</a>
+      </nav>
     </div>
-  <!-- Roadman -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto2.JPG" alt="Roadman Loti">
-        <p><strong>👤 Naam:</strong> Roadman Loti</p>
-        <p><strong>🎖️ Rol:</strong> Directeur</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2011</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-    </div>
-    <!-- Ardit -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto3.JPG" alt="Ardit Duda Stoplicht">
-        <p><strong>👤 Naam:</strong> Ardit Duda Stoplicht</p>
-        <p><strong>🎖️ Rol:</strong> Teamspeler</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2006</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-    </div>
-    <!-- Altin -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="IMG_1947.jpeg" alt="Altin Fransman">
-        <p><strong>👤 Naam:</strong> Altin Fransman</p>
-        <p><strong>🎖️ Rol:</strong> Slachtoffer</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2009</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-    </div>
-    <!-- Ermal -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto5.JPG" alt="Ermal Terlo">
-        <p><strong>👤 Naam:</strong> Ermal Terlo</p>
-        <p><strong>🎖️ Rol:</strong> Ballieman</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2011</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-    </div>
-    <!-- Agon -->
-    <div class="idcard">
-      <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-      <div class="idcard-body">
-        <img src="foto4.JPG" alt="Agon Zemelbok">
-        <p><strong>👤 Naam:</strong> Agon Zemelbok</p>
-        <p><strong>🎖️ Rol:</strong> Teamleider</p>
-        <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-        <p><strong>📅 Geboortejaar:</strong> 2004</p>
-        <p><strong>🗓️ Lid sinds:</strong> Mei 2024</p>
-      </div>
-      </div>
-       <!-- Driton -->
-       <div class="idcard toni-rota-card">
-  <div class="idcard-header">AKOMORAD IDENTITEITSKAART</div>
-  <div class="idcard-body">
-    <img src="foto27.JPG" alt="Toni Rrota">
-    <p><strong>👤 Naam:</strong> Toni Rrota</p>
-    <p><strong>🎖️ Rol:</strong> Kolonel</p>
-    <p><strong>📍 Waar ons hart plaats vindt:</strong> Vrellë</p>
-    <p><strong>📅 Geboortejaar:</strong> 2001</p>
-    <p><strong>🗓️ Lid sinds:</strong> 19 oktober 2024</p>
-  </div>
-    </div>   
+  </header>
 
-   
-  </div>
+  <main class="container">
+    <section class="hero">
+      <h1>🪪 Akomorad ID-Kaarten</h1>
+      <p>
+        De ledenkaarten in een nettere en professionelere vorm, met dezelfde sfeer,
+        kleuren en groepsidentiteit.
+      </p>
+    </section>
 
+    <section class="cards">
+      <article class="idcard">
+        <div class="idcard-header">Akomorad Identiteitskaart</div>
+        <div class="idcard-body">
+          <img src="foto8.JPG" alt="Egzon Xoni Kiel">
+          <h2>Egzon Xoni Kiel</h2>
+          <div class="meta">
+            <span><strong>Rol:</strong> Uitvinder</span>
+            <span><strong>Plaats:</strong> Vrellë</span>
+            <span><strong>Geboortejaar:</strong> 2005</span>
+            <span><strong>Lid sinds:</strong> Mei 2024</span>
+          </div>
+        </div>
+      </article>
 
+      <article class="idcard">
+        <div class="idcard-header">Akomorad Identiteitskaart</div>
+        <div class="idcard-body">
+          <img src="foto2.JPG" alt="Roadman Loti">
+          <h2>Roadman Loti</h2>
+          <div class="meta">
+            <span><strong>Rol:</strong> Directeur</span>
+            <span><strong>Plaats:</strong> Vrellë</span>
+            <span><strong>Geboortejaar:</strong> 2011</span>
+            <span><strong>Lid sinds:</strong> Mei 2024</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="idcard">
+        <div class="idcard-header">Akomorad Identiteitskaart</div>
+        <div class="idcard-body">
+          <img src="foto3.JPG" alt="Ardit Duda Stoplicht">
+          <h2>Ardit Duda Stoplicht</h2>
+          <div class="meta">
+            <span><strong>Rol:</strong> Teamspeler</span>
+            <span><strong>Plaats:</strong> Vrellë</span>
+            <span><strong>Geboortejaar:</strong> 2006</span>
+            <span><strong>Lid sinds:</strong> Mei 2024</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="idcard">
+        <div class="idcard-header">Akomorad Identiteitskaart</div>
+        <div class="idcard-body">
+          <img src="IMG_1947.jpeg" alt="Altin Fransman">
+          <h2>Altin Fransman</h2>
+          <div class="meta">
+            <span><strong>Rol:</strong> Slachtoffer</span>
+            <span><strong>Plaats:</strong> Vrellë</span>
+            <span><strong>Geboortejaar:</strong> 2009</span>
+            <span><strong>Lid sinds:</strong> Mei 2024</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="idcard">
+        <div class="idcard-header">Akomorad Identiteitskaart</div>
+        <div class="idcard-body">
+          <img src="foto5.JPG" alt="Ermal Terlo">
+          <h2>Ermal Terlo</h2>
+          <div class="meta">
+            <span><strong>Rol:</strong> Ballieman</span>
+            <span><strong>Plaats:</strong> Vrellë</span>
+            <span><strong>Geboortejaar:</strong> 2011</span>
+            <span><strong>Lid sinds:</strong> Mei 2024</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="idcard">
+        <div class="idcard-header">Akomorad Identiteitskaart</div>
+        <div class="idcard-body">
+          <img src="foto4.JPG" alt="Agon Zemelbok">
+          <h2>Agon Zemelbok</h2>
+          <div class="meta">
+            <span><strong>Rol:</strong> Teamleider</span>
+            <span><strong>Plaats:</strong> Vrellë</span>
+            <span><strong>Geboortejaar:</strong> 2004</span>
+            <span><strong>Lid sinds:</strong> Mei 2024</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="idcard">
+        <div class="idcard-header">Akomorad Identiteitskaart</div>
+        <div class="idcard-body">
+          <img src="foto27.JPG" alt="Toni Rrota">
+          <h2>Toni Rrota</h2>
+          <div class="meta">
+            <span><strong>Rol:</strong> Kolonel</span>
+            <span><strong>Plaats:</strong> Vrellë</span>
+            <span><strong>Geboortejaar:</strong> 2001</span>
+            <span><strong>Lid sinds:</strong> 19 oktober 2024</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="idcard">
+        <div class="idcard-header">Akomorad Identiteitskaart</div>
+        <div class="idcard-body">
+          <img src="foto1.JPG" alt="Erin Plofkraak">
+          <h2>Erin Plofkraak</h2>
+          <div class="meta">
+            <span><strong>Rol:</strong> Coach</span>
+            <span><strong>Plaats:</strong> Vrellë</span>
+            <span><strong>Geboortejaar:</strong> 2005</span>
+            <span><strong>Lid sinds:</strong> 2024</span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-card">
+      <strong>AKOMORAD</strong><br>
+      
+    </div>
+  </footer>
 </body>
 </html>
