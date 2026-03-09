@@ -1,0 +1,48 @@
+backend:
+  name: github
+  repo: Shqiptar334/Akomorad.be
+  branch: main # verander naar master als je master gebruikt
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "posts"
+    create: true
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "rechtszaken"
+    label: "Rechtszaken"
+    files:
+      - file: "rechtszaken.html"
+        label: "Rechtszaken Pagina"
+        fields:
+          - { label: "Inhoud", name: "body", widget: "markdown" }
+
+  - name: "rollen"
+    label: "Rollen"
+    files:
+      - file: "rollen.html"
+        label: "Rollen Pagina"
+        fields:
+          - { label: "Inhoud", name: "body", widget: "markdown" }
+
+  - name: "IDkaarten"
+    label: "ID Kaarten"
+    files:
+      - file: "IDkaarten.html"
+        label: "ID Kaarten Pagina"
+        fields:
+          - { label: "Inhoud", name: "body", widget: "markdown" }
+
+  - name: "video"
+    label: "Video"
+    files:
+      - file: "video.html"
+        label: "Video Pagina"
+        fields:
+          - { label: "Inhoud", name: "body", widget: "markdown" }
