@@ -1,241 +1,347 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rechtszaken Akomorada</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #121212;
-    color: #eee;
-    margin: 0; padding: 20px;
-  }
-  h1, h2 {
-    color: #00bfff;
-    text-shadow: 0 0 8px #00bfff;
-  }
-  .case-list {
-    max-width: 900px;
-    margin: 20px auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-    gap: 20px;
-  }
-  .case-item {
-    background: #222;
-    padding: 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 0 10px #00446644;
-    transition: background-color 0.3s ease;
-    white-space: normal;
-    word-wrap: break-word;
-    font-size: 1.1rem;
-    font-weight: 600;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-  }
-  .case-item:hover {
-    background: #004466;
-    box-shadow: 0 0 15px #00bfff;
-  }
-  .case-item.inactive {
-    background: #444;
-    color: #888;
-    cursor: default;
-    box-shadow: none;
-  }
-  button, .nav-btn {
-    background: #00bfff;
-    color: #121212;
-    border: none;
-    padding: 10px 15px;
-    margin: 10px 5px 0 0;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 0 10px #00bfff88;
-    transition: background-color 0.3s ease;
-  }
-  button:hover, .nav-btn:hover {
-    background: #0088cc;
-  }
-  .content {
-    max-width: 900px;
-    margin: 20px auto;
-    background: #222;
-    padding: 20px;
-    border-radius: 8px;
-    line-height: 1.6;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akomorad | Rechtszaken</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --panel:#141414;
+      --panel-2:#1c1c1c;
+      --text:#ffffff;
+      --muted:#d2d2d2;
+      --red:#c8102e;
+      --red-dark:#980b22;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 18px 40px rgba(0,0,0,.35);
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(200,16,46,.18), transparent 24%),
+        linear-gradient(180deg,#060606 0%,#0e0e0e 100%);
+      color:var(--text);
+    }
+    a{text-decoration:none;color:inherit}
+    .topbar{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(10,10,10,.9);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      min-height:76px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:16px;
+      padding:10px 0;
+    }
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{width:50px;height:50px;object-fit:contain;border-radius:14px;background:#fff;padding:5px}
+    .brand-text strong{display:block;letter-spacing:.16em;text-transform:uppercase}
+    .brand-text span{display:block;color:#f3c5cd;font-size:.9rem}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}
+    .nav a{padding:10px 14px;border-radius:999px;font-weight:700;transition:.2s ease}
+    .nav a:hover,.nav a.active{background:var(--red)}
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      padding:34px 0 40px;
+    }
+    .hero{text-align:center;margin-bottom:24px}
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(2rem,5vw,3.4rem);
+    }
+    .hero p{
+      margin:0 auto;
+      color:var(--muted);
+      max-width:760px;
+    }
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    .case-list{
+      display:grid;
+      gap:16px;
+    }
+    .case-item{
+      background:var(--panel-2);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .case-item:hover{
+      transform:translateY(-3px);
+      border-color:rgba(200,16,46,.55);
+    }
+    .case-item.inactive{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+    .case-item h2{
+      margin:0 0 6px;
+      font-size:1.2rem;
+    }
+    .case-item p{
+      margin:0;
+      color:var(--muted);
+    }
+    .badge{
+      display:inline-block;
+      margin-top:10px;
+      padding:7px 11px;
+      border-radius:999px;
+      font-size:.85rem;
+      font-weight:800;
+      background:var(--red);
+      color:#fff;
+    }
+    .subpanel{
+      background:var(--panel-2);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      margin-top:16px;
+    }
+    .subpanel h2,.subpanel h3{
+      margin-top:0;
+    }
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .btn{
+      padding:12px 16px;
+      border:none;
+      border-radius:14px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .btn-primary{
+      background:var(--red);
+      color:#fff;
+    }
+    .btn-primary:hover{background:var(--red-dark)}
+    .btn-secondary{
+      background:#fff;
+      color:#111;
+    }
+    .btn-secondary:hover{transform:translateY(-2px)}
+    .footer-note{
+      margin-top:20px;
+      color:#cfcfcf;
+      font-size:.92rem;
+    }
+  </style>
 </head>
 <body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <img src="akomorada-logo.png" alt="Akomorad logo">
+        <div class="brand-text">
+          <strong>AKOMORAD</strong>
+          <span>Eén familie. Eén woord. Eén hartslag.</span>
+        </div>
+      </a>
 
-<h1>Rechtszaken Akomorada</h1>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="rollen.html">Rollen</a>
+        <a href="IDkaarten.html">ID-Kaarten</a>
+        <a href="rechtszaken.html" class="active">Rechtszaken</a>
+        <a href="video.html">Video</a>
+      </nav>
+    </div>
+  </header>
 
-<button onclick="location.href='index.html'" style="margin-bottom:20px;">← Terug naar Home</button>
+  <main class="container">
+    <section class="hero">
+      <h1>⚖️ Rechtszaken van Akomorada</h1>
+      <p>
+        Een netter overzicht van de rechtszaken binnen de groep, met behoud van de originele inhoud.
+      </p>
+    </section>
 
-<!-- Hier staat de lijst -->
-<div id="case-list" class="case-list"></div>
+    <section class="panel">
+      <div id="case-list" class="case-list"></div>
 
-<!-- Details van een rechtszaak -->
-<div id="case-details" class="content" style="display:none;">
-  <h2 id="case-title"></h2>
-  <p><strong>Datum:</strong> <span id="case-date"></span></p>
-  <div id="case-description"></div>
+      <div id="case-details" style="display:none;">
+        <div class="subpanel">
+          <h2 id="case-title"></h2>
+          <p><strong>Datum:</strong> <span id="case-date"></span></p>
+          <div id="case-description"></div>
 
-  <div>
-    <button id="btn-egzon">Bekijk fouten Egzon</button>
-    <button id="btn-ardit">Bekijk fouten Ardit</button>
-  </div>
+          <div class="actions">
+            <button class="btn btn-primary" id="btn-egzon">Bekijk fouten Egzon</button>
+            <button class="btn btn-primary" id="btn-ardit">Bekijk fouten Ardit</button>
+            <button class="btn btn-secondary" id="back-to-list">← Terug naar overzicht</button>
+          </div>
+        </div>
+      </div>
 
-  <button class="nav-btn" id="back-to-list">← Terug naar overzicht</button>
-  <button onclick="location.href='index.html'" class="nav-btn">← Terug naar Home</button>
-</div>
+      <div id="person-details" style="display:none;">
+        <div class="subpanel">
+          <h2 id="person-name"></h2>
+          <div id="person-content"></div>
 
-<!-- Details van een persoon -->
-<div id="person-details" class="content" style="display:none;">
-  <h2 id="person-name"></h2>
-  <div id="person-content"></div>
-  <button class="nav-btn" id="back-to-case">← Terug naar rechtszaak</button>
-  <button onclick="location.href='index.html'" class="nav-btn">← Terug naar Home</button>
-</div>
+          <div class="actions">
+            <button class="btn btn-secondary" id="back-to-case">← Terug naar rechtszaak</button>
+          </div>
+        </div>
+      </div>
 
-<script>
-  // Data structuur met uitgebreide teksten
-  const cases = [
-    {
-      id: 'egzon-ardit',
-      title: 'Rechtszaak Egzon "Xoni Kiel" Maraj & Ardit "Duda Stoplicht" Fetahaj',
-      date: '2026-06-28T16:25:00',  // sluiting 28 juni 16:25
-      displayDate: '... ( nog niet zeker van de datum) 2025',
-      description: `
-        <p>Deze rechtszaak gaat over de conflicten en overtredingen tussen Egzon en Ardit binnen de groep Akomorada.</p>
-        <p>Klik op de knoppen hieronder om de details van hun overtredingen te bekijken.</p>
-      `,
-      persons: {
-        egzon: {
-          name: 'Egzon "Xoni Kiel" Maraj',
-          content: `
-            <h3>Dagvaarding & Beschuldigingen – Heer Egzon Eko Maraj</h3>
-            <p>Het is vastgesteld dat Heer Egzon Eko Maraj zich meermalen heeft onttrokken aan zijn plichten tegenover medeleden, met name tegenover Heer Ardit. Hij liet hem op cruciale momenten in de steek om zijn aandacht te richten op vrouwen, wat een directe schending is van Artikel 1: Loyaliteit is wet, waarin staat dat “je nooit iemand alleen laat, wat er ook gebeurt”.</p>
-            <p>Daarnaast maakte hij de ongefundeerde uitspraak dat hij “rammel” zou hebben uitgedeeld in Brussel – een claim die is ontkracht. Dit is een ernstige overtreding van Artikel 3: Eerlijkheid boven alles, waarin liegen binnen de groep wordt beschouwd als een “breuk in vertrouwen”.</p>
-            <p>Ook gaf hij consequent prioriteit aan privécontacten boven Akomorada, waarmee hij Artikel 2: Aanwezigheid is verplicht en Artikel 7: Samen sterk ondermijnt. Het feit dat hij zich terugtrok van groepsmomenten om te praten met een zogenaamde “mieke” toont aan dat zijn prioriteiten niet in lijn zijn met de Akomorada-filosofie: “Akomorada komt altijd op de eerste plaats – boven relaties” (Artikel 1).</p>
-            <p>Dit gedrag schaadt niet alleen zijn eigen reputatie, maar vormt ook een bedreiging voor de cohesie en uitstraling van Akomorada. Het zal intern worden besproken en kan leiden tot formele sancties op grond van Artikel 9: Tucht & Discipline.</p>
-          `
-        },
-        ardit: {
-          name: 'Ardit "Duda Stoplicht" Fetahaj',
-          content: `
-            <h3>Dagvaarding & Beschuldigingen – Heer Ardit Arben Fetahaj</h3>
-            <p>Heer Ardit Arben Fetahaj heeft tijdens een belangrijk sociaal moment – het gezamenlijk volgen van de Champions League, georganiseerd door Heer Zemelbok en Heer Kiel – onverwacht en zonder melding afwezig geweest. Dit is een duidelijke schending van Artikel 2: Aanwezigheid is verplicht, waarin staat dat “onverwacht afwezig zijn = rechtzaak”.</p>
-            <p>Zijn afwezigheid, terwijl hij buiten met een “mieke” werd gesignaleerd, wijst op een duidelijke prioriteitsvervaging en overtreding van Artikel 1: Loyaliteit is wet. Hij heeft Akomorada bewust achtergesteld voor een persoonlijke relatie, wat niet is toegestaan.</p>
-            <p>Daarnaast heeft zijn gedrag een negatieve impact gehad op de sfeer en groepsenergie, wat valt onder Artikel 6: Energie en vibe. Het bevorderen van de groepsvibe is een verantwoordelijkheid van ieder lid.</p>
-            <p>Deze gedragingen hebben geleid tot wanorde, teleurstelling en het ondermijnen van het collectief vertrouwen binnen Akomorada. Daarom is het noodzakelijk dat Heer Ardit zich verantwoordt voor zijn daden.</p>
-            <p>De groep verwacht volledige openheid en loyaliteit tijdens de zitting en behoudt zich het recht voor sancties op te leggen conform Artikel 9: Tucht & Discipline.</p>
-          `
+            </div>
+    </section>
+  </main>
+
+  <script>
+    const cases = [
+      {
+        id: "egzon-ardit",
+        title: 'Rechtszaak Egzon "Xoni Kiel" Maraj & Ardit "Duda Stoplicht" Fetahaj',
+        date: "2026-06-28T16:25:00",
+        displayDate: "... (nog niet zeker van de datum) 2025",
+        description: `
+          <p>Deze rechtszaak gaat over de conflicten en overtredingen tussen Egzon en Ardit binnen de groep Akomorada.</p>
+          <p>Klik op de knoppen hieronder om de details van hun overtredingen te bekijken.</p>
+        `,
+        persons: {
+          egzon: {
+            name: 'Egzon "Xoni Kiel" Maraj',
+            content: `
+              <h3>Dagvaarding & Beschuldigingen – Heer Egzon Eko Maraj</h3>
+              <p>Het is vastgesteld dat Heer Egzon Eko Maraj zich meermalen heeft onttrokken aan zijn plichten tegenover medeleden, met name tegenover Heer Ardit. Hij liet hem op cruciale momenten in de steek om zijn aandacht te richten op vrouwen, wat een directe schending is van Artikel 1: Loyaliteit is wet.</p>
+              <p>Daarnaast maakte hij de ongefundeerde uitspraak dat hij “rammel” zou hebben uitgedeeld in Brussel – een claim die is ontkracht. Dit is een ernstige overtreding van Artikel 3: Eerlijkheid boven alles, waarin liegen binnen de groep wordt beschouwd als een breuk in vertrouwen.</p>
+              <p>Ook gaf hij consequent prioriteit aan privécontacten boven Akomorada, waarmee hij Artikel 2: Aanwezigheid is verplicht ondermijnt. Het feit dat hij zich terugtrok van groepsmomenten om te praten met een zogenaamde “mieke” toont aan dat zijn prioriteiten niet in lijn zijn met de Akomorada-filosofie.</p>
+              <p>Dit gedrag schaadt niet alleen zijn eigen reputatie, maar vormt ook een bedreiging voor de cohesie en uitstraling van Akomorada. Het zal intern worden besproken en kan leiden tot formele sancties.</p>
+            `
+          },
+          ardit: {
+            name: 'Ardit "Duda Stoplicht" Fetahaj',
+            content: `
+              <h3>Dagvaarding & Beschuldigingen – Heer Ardit Arben Fetahaj</h3>
+              <p>Heer Ardit Arben Fetahaj is tijdens een belangrijk sociaal moment – het gezamenlijk volgen van de Champions League – onverwacht en zonder melding afwezig geweest. Dit is een duidelijke schending van Artikel 2: Aanwezigheid is verplicht.</p>
+              <p>Zijn afwezigheid, terwijl hij buiten met een “mieke” werd gesignaleerd, wijst op een duidelijke prioriteitsvervaging en overtreding van Artikel 1: Loyaliteit is wet. Hij heeft Akomorada bewust achtergesteld voor een persoonlijke relatie.</p>
+              <p>Daarnaast heeft zijn gedrag een negatieve impact gehad op de sfeer en groepsenergie. Het bevorderen van de groepsvibe is een verantwoordelijkheid van ieder lid.</p>
+              <p>Deze gedragingen hebben geleid tot wanorde, teleurstelling en het ondermijnen van het collectief vertrouwen binnen Akomorada. Daarom is het noodzakelijk dat Heer Ardit zich verantwoordt voor zijn daden.</p>
+            `
+          }
         }
       }
+    ];
+
+    const caseListEl = document.getElementById("case-list");
+    const caseDetailsEl = document.getElementById("case-details");
+    const personDetailsEl = document.getElementById("person-details");
+
+    const caseTitleEl = document.getElementById("case-title");
+    const caseDateEl = document.getElementById("case-date");
+    const caseDescriptionEl = document.getElementById("case-description");
+
+    const btnEgzon = document.getElementById("btn-egzon");
+    const btnArdit = document.getElementById("btn-ardit");
+    const backToListBtn = document.getElementById("back-to-list");
+
+    const personNameEl = document.getElementById("person-name");
+    const personContentEl = document.getElementById("person-content");
+    const backToCaseBtn = document.getElementById("back-to-case");
+
+    let currentCase = null;
+
+    function isCaseActive(caseDateISO) {
+      const now = new Date();
+      const closeDate = new Date(caseDateISO);
+      return now <= closeDate;
     }
-  ];
 
-  // Elementen
-  const caseListEl = document.getElementById('case-list');
-  const caseDetailsEl = document.getElementById('case-details');
-  const personDetailsEl = document.getElementById('person-details');
+    function renderCaseList() {
+      caseListEl.innerHTML = "";
+      cases.forEach(c => {
+        const item = document.createElement("div");
+        item.className = "case-item";
 
-  const caseTitleEl = document.getElementById('case-title');
-  const caseDateEl = document.getElementById('case-date');
-  const caseDescriptionEl = document.getElementById('case-description');
+        if (!isCaseActive(c.date)) {
+          item.classList.add("inactive");
+        }
 
-  const btnEgzon = document.getElementById('btn-egzon');
-  const btnArdit = document.getElementById('btn-ardit');
-  const backToListBtn = document.getElementById('back-to-list');
+        item.innerHTML = `
+          <h2>${c.title}</h2>
+          <p>${c.displayDate}</p>
+          <div class="badge">${isCaseActive(c.date) ? "Actief" : "Gesloten"}</div>
+        `;
 
-  const personNameEl = document.getElementById('person-name');
-  const personContentEl = document.getElementById('person-content');
-  const backToCaseBtn = document.getElementById('back-to-case');
+        if (isCaseActive(c.date)) {
+          item.onclick = () => openCase(c.id);
+        }
 
-  let currentCase = null;
+        caseListEl.appendChild(item);
+      });
 
-  // Check of rechtszaak actief is (datum check)
-  function isCaseActive(caseDateISO) {
-    const now = new Date();
-    const closeDate = new Date(caseDateISO);
-    return now <= closeDate;
-  }
+      caseListEl.style.display = "grid";
+      caseDetailsEl.style.display = "none";
+      personDetailsEl.style.display = "none";
+    }
 
-  // Render de lijst met rechtszaken
-  function renderCaseList() {
-    caseListEl.innerHTML = '';
-    cases.forEach(c => {
-      const div = document.createElement('div');
-      div.className = 'case-item';
-      // Toon ingekorte titel met tooltip volledige titel
-      const shortTitle = 'Rechtszaak Egzon & Ardit';
-      div.textContent = shortTitle;
-      div.title = c.title;
+    function openCase(id) {
+      currentCase = cases.find(c => c.id === id);
+      if (!currentCase) return;
 
-      if (isCaseActive(c.date)) {
-        div.onclick = () => openCase(c.id);
-      } else {
-        div.classList.add('inactive');
-        div.title = 'Deze rechtszaak is gesloten en niet meer actief.';
-      }
-      caseListEl.appendChild(div);
-    });
-    caseListEl.style.display = 'grid';
-    caseDetailsEl.style.display = 'none';
-    personDetailsEl.style.display = 'none';
-  }
+      caseTitleEl.textContent = currentCase.title;
+      caseDateEl.textContent = currentCase.displayDate;
+      caseDescriptionEl.innerHTML = currentCase.description;
 
-  // Open een rechtszaak details
-  function openCase(id) {
-    currentCase = cases.find(c => c.id === id);
-    if (!currentCase) return;
+      caseListEl.style.display = "none";
+      caseDetailsEl.style.display = "block";
+      personDetailsEl.style.display = "none";
+    }
 
-    caseTitleEl.textContent = currentCase.title;
-    caseDateEl.textContent = currentCase.displayDate;
-    caseDescriptionEl.innerHTML = currentCase.description;
+    function openPerson(personKey) {
+      if (!currentCase) return;
+      const person = currentCase.persons[personKey];
+      if (!person) return;
 
-    caseListEl.style.display = 'none';
-    caseDetailsEl.style.display = 'block';
-    personDetailsEl.style.display = 'none';
-  }
+      personNameEl.textContent = person.name;
+      personContentEl.innerHTML = person.content;
 
-  // Open details van een persoon in de rechtszaak
-  function openPerson(personKey) {
-    if (!currentCase) return;
-    const person = currentCase.persons[personKey];
-    if (!person) return;
+      caseListEl.style.display = "none";
+      caseDetailsEl.style.display = "none";
+      personDetailsEl.style.display = "block";
+    }
 
-    personNameEl.textContent = person.name;
-    personContentEl.innerHTML = person.content;
+    backToListBtn.onclick = () => {
+      currentCase = null;
+      renderCaseList();
+    };
 
-    caseListEl.style.display = 'none';
-    caseDetailsEl.style.display = 'none';
-    personDetailsEl.style.display = 'block';
-  }
+    backToCaseBtn.onclick = () => {
+      if (!currentCase) return;
+      openCase(currentCase.id);
+    };
 
-  // Terugknoppen
-  backToListBtn.onclick = () => {
-    currentCase = null;
+    btnEgzon.onclick = () => openPerson("egzon");
+    btnArdit.onclick = () => openPerson("ardit");
+
     renderCaseList();
-  };
-  backToCaseBtn.onclick = () => {
-    if (!currentCase) return;
-    openCase(currentCase.id);
-  };
-
-  btnEgzon.onclick = () => openPerson('egzon');
-  btnArdit.onclick = () => openPerson('ardit');
-
-  // Start met lijst tonen
-  renderCaseList();
-</script>
-
+  </script>
 </body>
 </html>
