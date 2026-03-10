@@ -7,13 +7,48 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "test"
-    label: "Test"
+  - name: "paginas"
+    label: "Pagina's"
+    editor:
+      preview: false
     files:
-      - label: "Testpagina"
-        name: "testpagina"
-        file: "test.md"
+
+      - label: "Home"
+        name: "index"
+        file: "index.html"
         fields:
-          - label: "Body"
+          - label: "HTML"
             name: "body"
-            widget: "markdown"
+            widget: "text"
+
+      - label: "Rechtszaken"
+        name: "rechtszaken"
+        file: "rechtszaken.html"
+        fields:
+          - label: "HTML"
+            name: "body"
+            widget: "text"
+
+      - label: "Rollen"
+        name: "rollen"
+        file: "rollen.html"
+        fields:
+          - label: "HTML"
+            name: "body"
+            widget: "text"
+
+      - label: "Video"
+        name: "video"
+        file: "video.html"
+        fields:
+          - label: "HTML"
+            name: "body"
+            widget: "text"
+
+      - label: "IDkaarten"
+        name: "idkaarten"
+        file: "IDkaarten.html"
+        fields:
+          - label: "HTML"
+            name: "body"
+            widget: "text"
